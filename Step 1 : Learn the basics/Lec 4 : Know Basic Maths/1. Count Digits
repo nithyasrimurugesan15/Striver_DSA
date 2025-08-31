@@ -1,0 +1,64 @@
+Approach 1 : Brute force
+
+T.C : O(log10(n))
+S.C : O(1)
+
+import java.util.Scanner;
+public class Main 
+{
+  public static int countDigits(int n) 
+  {
+    if (n == 0) 
+    {
+       return 1;
+    }
+   // n = Math.abs(n);
+    int cnt = 0;
+    while (n != 0) 
+    {
+        cnt++;
+        n /= 10;
+    }
+    return cnt;
+}
+public static void main(String[] args) 
+    {
+        int N = -3422;
+        System.out.println("N: " + N);
+        int digits = countDigits(N);
+        System.out.println("Number of Digits in N: " + digits);
+    }
+}
+
+
+
+
+Math.log10(0) = -Infinity
+Math.log10(-23) = NaN
+
+Approach 2 : Optimal Approach
+
+T.C : O(1)
+S.C : O(1)
+
+import java.util.Scanner;
+public class Main 
+{
+  public static int countDigits(int n) 
+  {
+    if (n == 0) return 1;
+    // Must use Math.abs to avoid NaN for negative numbers
+    // Convert to long to handle Integer.MIN_VALUE safely
+    return (int)Math.log10(Math.abs((long)n)) + 1;
+}
+
+public static void main(String[] args) 
+    {
+        int N = -3422;
+        //int N=-2147483648; // -> o/t -> 10
+        System.out.println("N: " + N); 
+        int digits = countDigits(N);
+        System.out.println("Number of Digits in N: " + digits);
+    }
+}
+
