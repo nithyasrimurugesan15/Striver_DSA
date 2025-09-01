@@ -61,6 +61,8 @@ public class Main {
             {
                return 0; 
             }
+            rev=rev*10+rem;
+            num/=10;
         }
         return rev;
     }
