@@ -1,0 +1,76 @@
+APPROACH 1 -> USING LONG
+
+T.C : O(logn)
+S.c : O(N)
+
+import java.util.Scanner;
+
+public class Main {
+    public static int reverseNumber(int n) {
+        // Convert to long before Math.abs to avoid overflow on Integer.MIN_VALUE
+        long num = Math.abs((long)n);
+        long rev = 0;
+
+        while (num != 0) {
+            long rem = num % 10;
+            rev = rev * 10 + rem;
+            num /= 10;
+        }
+
+        // Restore the sign if n was negative
+        if (n < 0) {
+            rev = -rev;
+        }
+
+        // Check for overflow
+        if (rev > Integer.MAX_VALUE || rev < Integer.MIN_VALUE) {
+            return 0; // return 0 if overflow happens
+        }
+
+        return (int) rev;
+    }
+
+    public static void main(String[] args) {
+        int N = -2147483648;  // tricky case: Integer.MIN_VALUE
+        System.out.println("N: " + N);
+        int rev = reverseNumber(N);
+        System.out.println("Reversed N: " + rev);
+    }
+}
+
+
+APPROACH 2 -> WITHOUT LONG -> (PREFER THIS FOR INTERVIEW)
+
+T.C : O(logn)
+S.c : O(N)
+
+import java.util.Scanner;
+
+public class Main {
+    public static int reverseNumber(int num) 
+    {
+        int rev = 0;
+       while (num != 0) 
+        {
+            int rem = num % 10;
+            if (rev > Integer.MAX_VALUE/10 || (rev == Integer.MAX_VALUE/10 && rem>7)) 
+            {
+               return 0; 
+            }
+            if (rev < Integer.MIN_VALUE/10 || (rev == Integer.MIN_VALUE/10 && rem < -8)) 
+            {
+               return 0; 
+            }
+        }
+        return rev;
+    }
+
+    public static void main(String[] args) {
+        int N = -2147483648;  // tricky case: Integer.MIN_VALUE
+        System.out.println("N: " + N);
+        int rev = reverseNumber(N);
+        System.out.println("Reversed N: " + rev);
+    }
+}
+
+
