@@ -1,0 +1,26 @@
+T.C : O(logN)
+S.C : O(1)
+
+class Main {
+    public static boolean reverseofnumber(int num)
+    {
+        int n=num;
+        int rev=0;
+        while(num!=0)
+        {
+            int rem=num%10;
+            rev=rev*10+rem;
+            num/=10;
+        }
+        if(n==rev)
+        {
+         return true;
+        }
+        return false;
+    }
+    public static void main(String[] args) 
+    {
+    int num=2147483647;
+    System.out.println(reverseofnumber(num));
+    }
+}
