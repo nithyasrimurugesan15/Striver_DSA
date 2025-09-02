@@ -1,0 +1,80 @@
+Approach 1 -> Brute:
+
+T.C : O(Min(n1,n2))
+S.C : O(1)
+
+class Main {
+    public static int gcd(int n1,int n2)
+    {
+       int gcd=1;
+       for(int i=1;i<=Math.min(n1,n2);i++)
+       {
+           if(n1%i==0 && n2%i==0)
+           {
+               gcd=i;
+           }
+       }
+       return gcd;
+    }
+    public static void main(String[] args) {
+    int n1=9;
+    int n2=12;
+    System.out.println(gcd(n1,n2));
+}
+}
+
+Approach 2 -> Better:
+
+T.C : O(Min(n1,n2))
+S.C : O(1)
+
+class Main {
+    public static int gcd(int n1,int n2)
+    {
+       for(int i=Math.min(n1,n2);i>1;i--)
+       {
+           if(n1%i==0 && n2%i==0)
+           {
+               return i;
+           }
+       }
+       return 1;
+    }
+    public static void main(String[] args) {
+    int n1=9;
+    int n2=12;
+    System.out.println(gcd(n1,n2));
+}
+}
+
+Approach 3 ->Optimal:
+
+T.C : O(log(min(a,b)))
+S.C : O(1)
+
+class Main {
+    public static int gcd(int n1,int n2)
+    {
+       while(n1>0 && n2>0)
+       {
+           if(n1>n2)
+           {
+               n1=n1%n2;
+           }
+           else
+           {
+               n2=n2%n1;
+           }
+       }
+       if(n1==0)
+       {
+           return n2;
+       }
+       return n1;
+    }
+    public static void main(String[] args) {
+    int n1=9;
+    int n2=12;
+    System.out.println(gcd(n1,n2));
+}
+}
