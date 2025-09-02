@@ -1,0 +1,31 @@
+Approach 1:
+
+T.C : O(log n)
+S.C : O(1)
+
+import java.util.*;
+class Main {
+    public static boolean armstrongofnumber(int n)
+    {
+        int num=n;
+        int k = String.valueOf(n).length();
+        int arm=0;
+        while(num!=0)
+        {
+            int rem=num%10;
+            //arm=(int)(arm+Math.pow(rem,k));
+            arm+=Math.pow(rem,k);
+            num/=10;
+        }
+        if(n==arm)
+        {
+         return true;
+        }
+        return false;
+    }
+    public static void main(String[] args) 
+    {
+    int num=153;
+    System.out.println(armstrongofnumber(num));
+    }
+}
