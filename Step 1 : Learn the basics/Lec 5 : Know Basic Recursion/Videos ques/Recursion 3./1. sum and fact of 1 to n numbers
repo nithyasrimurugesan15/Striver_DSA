@@ -1,0 +1,54 @@
+T.C : O(N)
+S.C : O(N)
+
+Approach 1: Parameterised 
+
+class Main {
+    static void sum(int i,int sum)
+    {
+        if(i<0)
+        {
+         System.out.print(sum);
+         return;
+        }
+       sum(i-1,sum+i);
+    }
+    public static void main(String[] args) {
+      int n=3;
+      sum(n,0);
+    }
+}
+
+Approach 2: Functional
+
+class Main {
+    static int sum(int n)
+    {
+        if(n<0)
+        {
+         return 0;
+        }
+       return n+sum(n-1);
+    }
+    public static void main(String[] args) {
+      int n=3;
+      System.out.print(sum(n));
+    }
+}
+
+FACTORIAL :
+
+class Main {
+    static int fact(int n)
+    {
+        if(n<1)
+        {
+         return 1;
+        }
+       return n*fact(n-1);
+    }
+    public static void main(String[] args) {
+      int n=3;
+      System.out.print(fact(n));
+    }
+}
