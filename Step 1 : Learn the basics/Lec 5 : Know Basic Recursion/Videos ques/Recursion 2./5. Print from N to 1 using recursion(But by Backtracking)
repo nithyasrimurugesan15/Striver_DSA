@@ -1,0 +1,19 @@
+first fun call after print -> backtracking
+first print after fun call  -> recursion
+
+If you print before the recursive call, it prints in forward order (recursion phase).
+If you print after the recursive call, it prints in reverse order (backtracking phase).
+
+class Main {
+    static void linear(int i,int n)
+    {
+        if(i>n)
+        return;
+        linear(i+1,n);
+         System.out.print(i+" ");
+    }
+    public static void main(String[] args) {
+      int n=3;
+     linear(1,n);
+    }
+}
