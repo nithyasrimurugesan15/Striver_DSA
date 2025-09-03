@@ -1,0 +1,45 @@
+Approach 1 :
+
+T.C : O(1)
+S.C : O(1)
+
+class Main {
+    static void name(int i,int n)
+    {
+        if(i>n)
+        return;
+        System.out.println("Hello");
+        name(i+1,n);
+        // name(i++,n); -> infinite calls
+        // name(++i,n); -> crt o/t
+        // i++; name(i,n); -> crt o/t
+        // ++i; name(i,n); -> crt o/t
+    }
+    public static void main(String[] args) {
+      int n=3;
+     name(1,n);
+    }
+}
+
+Approach 2 :
+
+without using static in name() method 
+
+class Main {
+    static int c=0;
+    static void name()
+    {
+        if(c==2)
+        return;
+        System.out.println("Hello");
+        c++;
+        name();
+    }
+    public static void main(String[] args) {
+      Main b=new Main();
+      b.name(); // -> there not static
+      
+      //name(); -> there static
+  
+    }
+}
