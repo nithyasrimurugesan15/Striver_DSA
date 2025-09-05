@@ -1,0 +1,27 @@
+T.C = O(n + q)
+S.C = O(1)
+
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        // Input string
+        String s = input.next();
+        
+        // Character hashing (for lowercase English letters)
+        int hash[] = new int[256];  // only 'a' to 'z'
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            hash[ch]++;   // map 'a'->0, 'b'->1, ...
+        }
+
+        // Number of queries
+        int q = input.nextInt();
+        while (q-- > 0) {
+            char c = input.next().charAt(0);  // query character
+            System.out.println(hash[c]);
+        }
+    }
+}
