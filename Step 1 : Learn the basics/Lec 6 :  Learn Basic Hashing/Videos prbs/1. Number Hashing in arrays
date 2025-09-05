@@ -1,0 +1,28 @@
+T.C = O(n + q)
+S.C = O(10^6)
+
+import java.util.*;
+class Main {
+    //  static int hash[]=new int[10000000]; //upto 10^7
+    public static void main(String[] args) {
+        Scanner input=new Scanner(System.in);
+        int n=input.nextInt();
+        int[] arr=new int[n];
+        for(int i=0;i<n;i++)
+        {
+            arr[i]=input.nextInt();
+        }
+        int hash[]=new int[1000000]; // //upto 10^6
+        for(int i=0;i<n;i++)
+        {
+            hash[arr[i]]+=1;
+        }
+        int q=input.nextInt();
+        while(q-->0)
+        {
+            int nu=input.nextInt();
+            System.out.println(hash[nu]);
+            
+        }
+    }
+}
