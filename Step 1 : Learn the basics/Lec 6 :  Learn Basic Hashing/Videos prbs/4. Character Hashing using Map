@@ -1,0 +1,28 @@
+T.C = O(n + q)
+S.C = O(k)
+
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        // Input string
+        String s = input.next();
+
+        // HashMap for character frequency
+        Map<Character, Integer> hash = new HashMap<>();
+
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            hash.put(ch, hash.getOrDefault(ch, 0) + 1);
+        }
+
+        // Number of queries
+        int q = input.nextInt();
+        while (q-- > 0) {
+            char c = input.next().charAt(0); // query character
+            System.out.println(hash.getOrDefault(c, 0));
+        }
+    }
+}
