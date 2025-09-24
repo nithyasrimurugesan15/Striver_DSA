@@ -1,0 +1,23 @@
+// T.C : O(LOG N)
+// S.C : 0(LOG N)
+
+class Main {
+    public static void main(String[] args) {
+        int decimal=7;
+        int base=2;
+        String res="1";
+        while(decimal!=1)
+        {
+            if(decimal%base==1)
+            {
+                res+=1;
+            }
+            else
+            {
+                res+=0;
+            }
+            decimal/=base;
+        }
+        System.out.println(res);
+    }
+}
