@@ -1,0 +1,13 @@
+T.C : O(1)
+S.C : O(1)
+
+// clear the ith bit
+
+class Main {
+    public static void main(String[] args) {
+        int n=10;
+        int i=1;
+        int res=n&~(1<<i);
+        System.out.println(res);
+    }
+}
