@@ -1,0 +1,19 @@
+Time Complexity = O(1)
+Space Complexity = O(1)
+
+// check if num is power of 2
+
+class Main {
+    public static void main(String[] args) {
+        int n=15;
+        int res=n&(n-1);
+        if(res==0)
+        {
+           System.out.println("yes");
+        }
+        else
+        {
+             System.out.println("no");
+        }
+    }
+}
