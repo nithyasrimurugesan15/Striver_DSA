@@ -1,0 +1,41 @@
+Time Complexity: O(log n)
+Space Complexity: O(1)
+
+// // count the number of set bits
+
+// class Main {
+//     public static void main(String[] args) {
+//         int n=23;
+//         int cnt=1;
+//         while(n>1)
+//         {
+//             if(n%2==1)
+//             {
+//                 cnt++;
+//             }
+            
+//             n/=2;
+//         }
+//         System.out.println(cnt);
+//     }
+// }
+
+
+// count the number of set bits
+
+class Main {
+    public static void main(String[] args) {
+        int n=23;
+        int cnt=1;
+        while(n>1)
+        {
+            if((n&1)==1)
+            {
+                cnt++;
+            }
+            
+            n=n>>1;
+        }
+        System.out.println(cnt);
+    }
+}
