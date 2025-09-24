@@ -1,0 +1,21 @@
+T.C : O(1)
+S.C : O(1)
+
+Set rightmost unset bit: turn the rightmost 0 into 1
+Unset rightmost unset bit: turn the rightmost 0 into 0 explicitly (clear it if it’s 1):
+
+class Main {
+    public static void main(String[] args) {
+        int n = 18;
+
+        // Set rightmost unset bit
+        int setResult = n | (n + 1);
+
+        // Unset rightmost unset bit
+        int unsetResult = n & (n + 1);
+
+        System.out.println(n);
+        System.out.println("After setting rightmost unset bit: " + setResult);
+        System.out.println("After unsetting rightmost unset bit: " + unsetResult);
+    }
+}
