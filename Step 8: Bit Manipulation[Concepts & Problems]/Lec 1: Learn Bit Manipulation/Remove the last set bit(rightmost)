@@ -1,0 +1,11 @@
+T.C : O(1)
+S.C : O(1)
+
+// remove the last set bit(rightmost)
+class Main {
+    public static void main(String[] args) {
+        int n=12;
+        int res=n&(n-1);
+        System.out.println(res);
+    }
+}
