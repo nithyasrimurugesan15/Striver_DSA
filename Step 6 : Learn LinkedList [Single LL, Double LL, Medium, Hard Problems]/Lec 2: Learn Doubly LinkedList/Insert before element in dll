@@ -1,0 +1,89 @@
+class Node
+{
+    int data;
+    Node next;
+    Node prev;
+    Node(int data1,Node next1,Node prev1)
+    {
+        this.data=data1;
+        this.next=next1;
+        this.prev=prev1;
+    }
+     Node(int data1)
+    {
+        this.data=data1;
+        this.next=null;
+        this.prev=null;
+    }
+}
+class ll {
+    static Node cnvrtdll(int[] arr) 
+    {
+        Node head=new Node(arr[0]);
+        Node prev=head;
+        for(int i=1;i<arr.length;i++)
+        {
+            Node temp=new Node(arr[i],null,prev);
+            prev.next=temp;
+            prev=temp;
+        }
+        return head;
+    }
+    
+    static Node insertbeforeeledll(Node head, int target, int val) {
+    Node newNode = new Node(val);
+
+    // Case 1: empty list
+    if (head == null) return newNode;
+
+    // Case 2: target is at head
+    if (head.data == target) {
+        newNode.next = head;
+        head.prev = newNode;
+        return newNode; // new head
+    }
+
+    Node temp = head;
+
+    // Traverse to find the target node
+    while (temp != null && temp.data != target) {
+        temp = temp.next;
+    }
+
+    // Case 3: target not found → do nothing
+    if (temp == null) return head;
+
+    // Case 4: insert before target
+    Node prevNode = temp.prev;
+    prevNode.next = newNode;
+    newNode.prev = prevNode;
+
+    newNode.next = temp;
+    temp.prev = newNode;
+
+    return head;
+}
+
+    static void display(Node head) {
+        Node temp=head;
+        while(temp!=null)
+        {
+            System.out.print(temp.data+" -> ");
+            temp=temp.next;
+        }
+         System.out.println("null");
+    }
+}
+public class Main {
+    public static void main(String[] args)
+    {
+        int[] arr={2,3,4,5,6,7};
+        Node head=ll.cnvrtdll(arr);
+        System.out.println("Before inserting tail in 2d linked list ");
+       ll.display(head);
+       head=ll.insertbeforeeledll(head,5,10);
+       System.out.println("After inserting tail in 2d linked list ");
+       ll.display(head);
+     
+    }
+}
