@@ -31,7 +31,9 @@ class ctll {
         {
             return null;
         }
+        Node temp=head;
         head=head.next;
+        temp.next=null;
        return head;
         
     }
