@@ -1,0 +1,134 @@
+class Node
+{
+    int data;
+    Node next;
+    Node(int data1,Node next1)
+    {
+        this.data=data1;
+        this.next=next1;
+    }
+     Node(int data1)
+    {
+        this.data=data1;
+        this.next=null;
+    }
+}
+class ll 
+{
+    static Node cnvrtll(int[] arr) 
+    {
+        if (arr.length == 0) return null;
+        Node head=new Node(arr[0]);
+        Node mover=head;
+        for(int i=1;i<arr.length;i++)
+        {
+            Node temp=new Node(arr[i]);
+            mover.next=temp;
+            mover=temp;
+        }
+        return head;
+    }
+    static Node inserthead(Node head,int val) 
+     {
+         Node fi=new Node(val);
+         fi.next=head;
+         head=fi;
+         return head;
+     }
+      static Node inserttail(Node head,int val) 
+     {
+         Node fi=new Node(val);
+         Node temp=head;
+        //  while(temp.next.next!=null)
+        //  {
+        //      temp=temp.next;
+        //  }
+        //  temp.next.next=fi;
+         while(temp.next!=null)
+         {
+             temp=temp.next;
+         }
+         temp.next=fi;
+         return head;
+     }
+     static Node insertkth(Node head,int k,int val) 
+     {
+         Node fi=new Node(val);
+         Node temp=head;
+         Node prev=null;
+         int c=0;
+         while(temp!=null)
+         {
+             c++;
+             if(c==k)
+             {
+                 prev.next=fi;
+                 fi.next=temp;
+             }
+             prev=temp;
+             temp=temp.next;
+         }
+       
+         return head;
+     }
+      static Node insertele(Node head,int ele,int val) 
+     {
+         Node fi=new Node(val);
+         Node temp=head;
+         Node prev=null;
+        if (head == null) return null;
+        if (head.data == ele) 
+        {
+            fi.next = head;
+            return fi;
+        }
+         while(temp!=null)
+         {
+             if(temp.data==ele)
+             {
+                  prev.next=fi;
+                  fi.next=temp;
+             }
+             prev=temp;
+             temp=temp.next;
+         }
+        
+         return head;
+     }
+    static void display(Node head) {
+        Node temp=head;
+        while(temp!=null)
+        {
+            System.out.print(temp.data+" -> ");
+            temp=temp.next;
+        }
+        System.out.println("null");
+    }
+}
+public class Main {
+    public static void main(String[] args)
+    {
+        int[] arr={2,3,4,5,6,7};
+        Node head=ll.cnvrtll(arr);
+        
+        System.out.println("Before inserting head: ");
+       ll.display(head);
+       
+      head=ll.inserthead(head,1);
+        System.out.println("/nAfter inserting head: ");
+      ll.display(head);
+       
+      head=ll.inserttail(head,8);
+      System.out.println("/nAfter inserting tail: ");
+      ll.display(head);
+       
+      head=ll.insertkth(head,3,9);
+      System.out.println("/nAfter inserting kth val: ");
+      ll.display(head);
+       
+       
+       head=ll.insertele(head,6,9);
+       System.out.println("/nAfter inserting the ele val: ");
+       ll.display(head);
+    }
+}
