@@ -1,0 +1,94 @@
+https://leetcode.com/problems/middle-of-the-linked-list/description/
+
+Approach 1: optimal : [TortoiseHare Method]
+
+t.c : o(n/2) = o(n)
+s.c : o(1)
+
+class Solution {
+    public ListNode middleNode(ListNode head) {
+        ListNode slow=head;
+        ListNode fast=head;
+        while(fast!=null && fast.next!=null  && slow != null)
+        {
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow;
+    }
+}
+
+
+
+Approach 2:
+
+t.c : o(n+ n/2) = o(n)
+s.c : o(1)
+
+
+class Solution 
+{
+    public ListNode middleNode(ListNode head) 
+    {
+    if (head == null || head.next == null) {
+            return head;
+        }
+       ListNode temp=head;
+       int c=0;
+       while(temp!=null)
+       {
+           c++;
+           temp=temp.next;
+       }
+       int mid=(c/2)+1;
+      temp=head;
+      c=0;
+       while(temp!=null)
+       {
+           c++;
+           if(c==mid)
+           {
+               head=temp;
+           }
+           temp=temp.next;
+       }
+        return head;
+    }
+}
+
+
+Approach 3:
+
+t.c : o(n+ n/2) = o(n)
+s.c : o(1)
+
+class Solution 
+{
+    public ListNode middleNode(ListNode head) 
+    {
+    if (head == null || head.next == null) {
+            return head;
+        }
+       ListNode temp=head;
+       int c=0;
+       while(temp!=null)
+       {
+           c++;
+           temp=temp.next;
+       }
+       int mid=(c/2)+1;
+      temp=head;
+       while(temp!=null)
+       {
+            mid=mid-1;
+           if(mid==0)
+           {
+              break;
+           }
+           temp=temp.next;
+       }
+        return temp;
+    }
+}
+
+
