@@ -1,0 +1,126 @@
+https://leetcode.com/problems/remove-nth-node-from-end-of-list/
+prefer 3rd approach -> optimal
+
+Aproach 1 : brute 1 : using prev..
+
+time : 2 traversal -> O(n) + O(n) → O(n)
+space : O(n)
+
+class Solution 
+{
+    public ListNode removeNthFromEnd(ListNode head, int n) 
+    {
+        if(head==null)
+        {
+            return null;
+        }
+        ListNode temp=head;
+        ListNode prev=null;
+        int c=0;
+        while(temp!=null)
+        {
+            c++;
+            temp=temp.next;
+        }
+        int co=c;
+        int pos=(c-n)+1;
+        temp=head;
+        c=0;
+         while(temp!=null)
+        {
+            c++;
+            if(c==1 && n==co)
+            {
+                head=head.next;
+                break;
+            }
+            if(c==pos)
+            {
+                if(temp.next==null)
+                {
+                    prev.next=null;
+                    break;
+                }
+                  prev.next=temp.next;
+                  break;
+            }
+            prev=temp;
+            temp=temp.next;
+        }
+        return head;
+    }
+}
+
+Approach 2 : brute 2 : without prev 
+
+time : 2 traversal -> O(n) + O(n) → O(n)
+space : O(n)
+
+ class Solution 
+{
+    public ListNode removeNthFromEnd(ListNode head, int n) 
+    {
+        if(head==null)
+        {
+            return null;
+        }
+        ListNode temp=head;
+        int c=0;
+        while(temp!=null)
+        {
+            c++;
+            temp=temp.next;
+        }
+        int pos=(c-n);
+        temp=head;
+         while(temp!=null)
+        {
+            if(c==n)
+            {
+                return head.next;
+            }
+            pos--;
+            if(pos==0)
+            {
+                break;
+            }
+            temp=temp.next;
+        }
+        temp.next=temp.next.next;
+        return head;
+    }
+}
+
+
+Approach 3 : optimal : using fast and slow pointer:
+
+time : 1 traversal ->  O(n)
+space : O(1)
+
+class Solution 
+{
+    public ListNode removeNthFromEnd(ListNode head, int n) 
+    {
+        if(head==null)
+        {
+            return null;
+        }
+        ListNode slow=head;
+        ListNode fast=head;
+        for(int i=0;i<n;i++)
+        {
+            fast=fast.next;
+        }
+        if(fast==null)
+        {
+            return head.next;
+        }
+        while(fast.next!=null)
+        {
+            slow=slow.next;
+            fast=fast.next;
+        }
+        slow.next=slow.next.next;
+        return head;
+    }
+}
