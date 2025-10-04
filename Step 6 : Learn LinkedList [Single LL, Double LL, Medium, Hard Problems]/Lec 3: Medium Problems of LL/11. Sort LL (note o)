@@ -1,0 +1,32 @@
+Approach 1: optimal -> recursive with merge sort -> refer strivers article -> https://takeuforward.org/linked-list/sort-a-linked-list
+
+Approach 2: brute force -> using external ds -> ArrayList
+
+time : o(n) and space : o(n)
+
+class Solution {
+    public ListNode sortList(ListNode head) {
+        if(head==null || head.next==null)
+        {
+            return head;
+        }
+        ArrayList<Integer> arr=new ArrayList<>();
+        ListNode temp=head;
+        while(temp!=null)
+        {
+            arr.add(temp.val);
+            temp=temp.next;
+        }
+        Collections.sort(arr);
+        int i=0;
+        temp=head;
+        while(temp!=null)
+        {
+            temp.val=arr.get(i);
+            temp=temp.next;
+            i++;
+        }
+        return head;
+    }
+}
+
