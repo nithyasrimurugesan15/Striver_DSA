@@ -1,0 +1,42 @@
+Approach 1 : brute
+
+time : O(2n) ~ O(n) overall and space ; o(1)
+
+Approach 2 : optimal -> using recursive -> no reverse needed ->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>    important 
+
+class Solution {
+    public Node addOne(Node head) {
+        // code here.
+        head=reverse(head);
+        Node current=head;
+        int carry=1;
+        while(current!=null && carry>0)
+        {
+            int sum=current.data+carry;
+            current.data=sum%10;
+            carry=sum/10;
+            if(current.next==null && carry>0)
+            {
+                current.next=new Node(carry);
+                carry=0;
+            }
+            current=current.next;
+        }
+        head=reverse(head);
+        return head;
+    }
+     public Node reverse(Node head) {
+        Node cur=head;
+        Node prev=null;
+        while(cur!=null)
+        {
+            Node nn=cur.next;
+            cur.next=prev;
+            prev=cur;
+            cur=nn;
+        }
+        return prev;
+     }
+    
+}
+
