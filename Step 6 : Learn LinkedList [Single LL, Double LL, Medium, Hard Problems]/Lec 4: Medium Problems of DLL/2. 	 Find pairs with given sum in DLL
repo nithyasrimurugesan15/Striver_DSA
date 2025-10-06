@@ -1,0 +1,77 @@
+GFG : https://www.geeksforgeeks.org/problems/find-pairs-with-given-sum-in-doubly-linked-list/1
+
+Approach 1 : brute :
+
+class Solution {
+
+    static ArrayList<ArrayList<Integer>> findPairsBrute(Node head, int target) {
+        ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+
+        Node curr1 = head;
+
+        while (curr1 != null) {
+            Node curr2 = curr1.next;
+
+            while (curr2 != null) {
+                if (curr1.data + curr2.data == target) {
+                    ArrayList<Integer> pair = new ArrayList<>();
+                    pair.add(curr1.data);
+                    pair.add(curr2.data);
+                    ans.add(pair);
+                }
+                curr2 = curr2.next;
+            }
+
+            curr1 = curr1.next;
+        }
+
+        return ans;
+    }
+
+Approach 2 : optimal : 
+
+class Solution {
+    public static ArrayList<ArrayList<Integer>> findPairsWithGivenSum(int target,
+              
+                                                                Node head) {
+        ArrayList<ArrayList<Integer>> ans=new ArrayList<>();
+        Node l=head;
+        Node r=findtail(head);
+        while(l.data < r.data)
+        {
+            int sum=l.data+r.data;
+            if(sum==target)
+            {
+                ArrayList<Integer> pair=new ArrayList<>();
+                pair.add(l.data);
+                pair.add(r.data);
+                ans.add(pair);
+                l=l.next;
+                r=r.prev;
+            }
+            else if(sum>target)
+            {
+                r=r.prev;
+            }
+            else
+            {
+                l=l.next;
+            }
+        }
+        
+        return ans;
+        
+    }
+    static Node findtail(Node head)
+    {
+        Node temp=head;
+        while(temp.next!=null)
+        {
+            temp=temp.next;
+        }
+        return temp;
+    }
+}
+
+
+
