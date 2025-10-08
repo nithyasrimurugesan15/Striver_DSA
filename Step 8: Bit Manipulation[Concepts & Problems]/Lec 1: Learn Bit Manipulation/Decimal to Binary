@@ -1,23 +1,44 @@
+Approach 1  : -> using stringbuilder -> prefer
+
 // T.C : O(LOG N)
 // S.C : 0(LOG N)
 
-class Main {
+int decimal = 7;
+int base = 2;
+StringBuilder res = new StringBuilder();
+
+if (decimal == 0) {
+    res.append(0);
+} else {
+    while (decimal > 0) {
+        res.append(decimal % base); 
+        decimal /= base;           
+    }
+}
+res.reverse();
+System.out.println(res.toString()); 
+
+
+Approach 2 : -> using  simple string
+
+// T.C : O((LOG N)^2)
+// S.C : 0(LOG N)
+
+public class Main {
     public static void main(String[] args) {
-        int decimal=7;
-        int base=2;
-        String res="1";
-        while(decimal!=1)
-        {
-            if(decimal%base==1)
-            {
-                res+=1;
+        int decimal = 13;
+        int base = 2;
+        String res = "";
+
+        if (decimal == 0) {
+            res = "0";
+        } else {
+            while (decimal > 0) {
+                res = (decimal % base) + res; // prepend current bit
+                decimal /= base;             
             }
-            else
-            {
-                res+=0;
-            }
-            decimal/=base;
         }
-        System.out.println(res);
+
+        System.out.println(res); // Output: 1101
     }
 }
