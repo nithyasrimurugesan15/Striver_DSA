@@ -38,7 +38,27 @@ public class Main {
                 decimal /= base;             
             }
         }
+System.out.println(res); // Output: 1101
+ }
+}
 
+Approach 3 : -> using  built fun
+
+// T.C : O(LOG N)
+// S.C : 0(LOG N)
+
+public class Main {
+    public static void main(String[] args) {
+        int decimal = 13;
+        int base = 2;
+        
+        // Convert to string in any base
+        String res = Integer.toString(decimal, base); //1101
+
+        // Convert to binary string
+        String binary = Integer.toBinaryString(decimal); // 1101
+
+        
         System.out.println(res); // Output: 1101
     }
 }
