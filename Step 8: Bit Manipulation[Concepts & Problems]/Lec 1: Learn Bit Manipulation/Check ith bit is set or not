@@ -1,3 +1,5 @@
+Approach 1 : prefer -> optimal
+
 // T.C : O(1)
 // S.C : O(1)
 
@@ -35,3 +37,30 @@ class Main {
         }
     }
 }
+
+
+Approach 2 -> using builtin fun
+ T.C : O(log n)
+ S.C : O(log n)
+
+class Main {
+    public static void main(String[] args) {
+        int n=10;
+        int i=1;
+       String binary = Integer.toBinaryString(n); 
+         if (i >= binary.length())
+         {
+             System.out.print("false");
+         }
+        if(binary.charAt(binary.length() - 1 - i) == '1')
+        {
+            System.out.print("true");
+        }
+        else
+        {
+            System.out.print("false");
+        }
+    }
+}
+
+
