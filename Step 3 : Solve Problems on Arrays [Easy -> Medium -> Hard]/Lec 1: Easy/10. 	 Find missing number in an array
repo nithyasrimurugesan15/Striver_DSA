@@ -1,0 +1,83 @@
+https://leetcode.com/problems/missing-number/
+
+Approaches : brute -> better -> optimal
+
+OPTIMAL(SEE LATER) EXPLNATION N TIME N SPACE
+
+Approach 1 : Brute 
+
+tc o(n^2) and space o(1)
+
+class Solution {
+  public int missingNumber(int[] nums) {
+    int ans=nums.length;
+    for(int i=0;i<=ans;i++)
+    {
+        boolean f=true;
+        for(int j=0;j<ans;j++)
+        {
+            if(i==nums[j])
+            {
+                f=false;
+            }
+        }
+        if(f) return i;
+    }
+    return -1;
+  }
+}
+
+Approach 2 : Better 
+
+tc o(n) and space o(1)
+
+
+class Solution {
+  public int missingNumber(int[] nums) {
+    int N=nums.length;
+    int sum = (N * (N + 1)) / 2;
+    //int sum=0;
+    // for(int i=0;i<nums.length+1;i++)
+    // {
+    //     sum+=i;
+    // }
+    int s=0;
+    for(int i=0;i<nums.length;i++)
+    {
+        s+=nums[i];
+    }
+    return sum-s;
+}
+}
+
+
+Approach 3 : optimal
+
+tc o(n) and space o(1)
+
+class Solution {
+  public int missingNumber(int[] nums) {
+    int ans = nums.length;
+
+    for (int i = 0; i < nums.length; ++i)
+      ans ^= i ^ nums[i];
+
+    return ans;
+    }
+  }
+
+(OR)
+
+import java.util.*;
+public class tUf {
+    public static int missingNumber(int []a, int N) {
+
+        int xor1 = 0, xor2 = 0;
+
+        for (int i = 0; i < N - 1; i++) {
+            xor2 = xor2 ^ a[i]; 
+            xor1 = xor1 ^ (i + 1); 
+        }
+        xor1 = xor1 ^ N;
+        return (xor1 ^ xor2); 
+    }
