@@ -1,0 +1,23 @@
+t.c : o(n) and space o(1)
+
+import java.util.*;
+public class tUf 
+{
+    public static int lsearch(int []a, int t) {
+       
+        for(int i=0;i<a.length;i++)
+        {
+            if(a[i]==t)
+            {
+               return i;
+            }
+        }
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1, 2,6,3,8,9};
+        int t= 1;
+        System.out.println(lsearch(arr,t));
+    }
+}
