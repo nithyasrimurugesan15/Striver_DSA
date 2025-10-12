@@ -1,0 +1,146 @@
+Left rotate array by d places: -> brute -> optimal
+Right rotate array by d places: ->  brute -> optimal
+
+Left rotate array by d places:
+
+Approach 1 : brute:
+
+t.c : o(n) and space o(n)
+
+class Solution {
+    public void rotate(int[] nums, int k) {
+        int n = nums.length;
+        k = k % n; 
+        int[] rotated = new int[n];
+        
+        for (int i = 0; i < n; i++) {
+            rotated[i] = nums[(i + k) % n]; 
+        }
+
+        for (int i = 0; i < n; i++) {
+            nums[i] = rotated[i];
+        }
+    }
+}
+
+Appraoch 2 : brute
+
+public class Main {
+  public static void Rotatetoleft(int[] arr, int n, int k) {
+    if (n == 0)
+      return;
+    k = k % n;
+    if (k > n)
+      return;
+    int[] temp = new int[k];
+    for (int i = 0; i < k; i++) {
+      temp[i] = arr[i];
+    }
+    for (int i = 0; i < n - k; i++) {
+      arr[i] = arr[i + k];
+    }
+    for (int i = n - k; i < n; i++) {
+      arr[i] = temp[i - n + k];
+    }
+  }
+
+  
+Approach 3 : optimal:
+
+t.c : o(n) and space o(1)
+
+class Solution {
+    public void rotate(int[] nums, int k) {
+        int n = nums.length;
+         k = k % n;
+         reverse(nums,0,k-1);
+         reverse(nums,k,n-1);
+         reverse(nums,0,n-1);  
+    }
+    public int[] reverse(int[] nums,int s,int e)
+    {
+        while(s<=e)
+        {
+            int temp=nums[s];
+            nums[s]=nums[e];
+            nums[e]=temp;
+            s++;
+            e--;
+        }
+        return nums;
+    }
+}
+
+/////////////////////////////////////////////////////////
+
+Right rotate array by d places:
+
+Approach 1 : brute:
+
+t.c : o(n) and space o(n)
+
+class Solution {
+    public void rotate(int[] nums, int k) {
+        int n = nums.length;
+         k = k % n;
+        int[] rotated = new int[n];
+         for (int i = 0; i < n; i++) {
+            rotated[(i+k)%n] = nums[i];
+        }
+
+        for (int i = 0; i < n; i++) {
+            nums[i] = rotated[i];
+        }        
+    }
+}
+
+Appraoch 2 : brute
+
+public class Main {
+  public static void Rotatetoright(int[] arr, int n, int k) {
+    if (n == 0)
+      return;
+    k = k % n;
+    if (k > n)
+      return;
+    int[] temp = new int[k];
+    for (int i = n - k; i < n; i++) {
+      temp[i - n + k] = arr[i];
+    }
+    for (int i = n - k - 1; i >= 0; i--) {
+      arr[i + k] = arr[i];
+    }
+    for (int i = 0; i < k; i++) {
+      arr[i] = temp[i];
+    }
+  }
+
+  
+Approach 3 : optimal:
+
+t.c : o(n) and space o(1)
+
+class Solution {
+    public void rotate(int[] nums, int k) {
+        int n = nums.length;
+         k = k % n;
+         reverse(nums,0,n-k-1);
+         reverse(nums,n-k,n-1);
+         reverse(nums,0,n-1);  
+    }
+    public int[] reverse(int[] nums,int s,int e)
+    {
+        while(s<=e)
+        {
+            int temp=nums[s];
+            nums[s]=nums[e];
+            nums[e]=temp;
+            s++;
+            e--;
+        }
+        return nums;
+    }
+}
+
+
+  
