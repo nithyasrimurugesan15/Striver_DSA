@@ -1,0 +1,78 @@
+https://leetcode.com/problems/divide-two-integers/description/
+
+time o(log n) and space o(1)
+
+class Solution {
+    public int divide(int dividend, int divisor) {
+        if(dividend==Integer.MIN_VALUE && divisor == -1)
+        {
+            return Integer.MAX_VALUE;
+        }
+        if(dividend==divisor)
+        {
+            return 1;
+        }
+        boolean sign=true;
+        if(dividend<=0 && divisor>0)
+        {
+            sign=false;
+        }
+        if(dividend>=0 && divisor<0)
+        {
+            sign =false;
+        }
+        long n=Math.abs((long)dividend);
+        long d=Math.abs((long)divisor);
+        long q=0;
+        while(n>=d)
+        {
+            long temp=d;
+            int m=1;
+            while(n>=(temp<<1))
+            {
+              temp<<=1;
+              m<<=1;  
+            }
+            n-=temp;
+            q+=m;
+        }
+        if(q>=(1l<<31)-1 && sign)
+        {
+            return Integer.MAX_VALUE;
+        }
+        if(q>=(1l<<31) && !sign)
+        {
+            return Integer.MIN_VALUE;
+        }
+        return sign?(int)q:(int)q*-1;
+    }
+}
+
+
+Brute : time O(n/d)  and space O(1)
+
+1. Repeated Addition
+2. Repeated Subtraction
+
+1. 
+
+int dividend = 22;
+int divisor = 3;
+int sum = 0, q = 0;
+while (sum + divisor <= dividend) {
+    sum += divisor;
+    q++;
+}
+System.out.println(q);
+
+
+2.
+
+int dividend = 22;
+int divisor = 3;
+int sum = 0, q = 0;
+while ( dividend >= divisor) {
+    dividend = dividend - divisor;
+    q++;
+}
+System.out.println(q);
