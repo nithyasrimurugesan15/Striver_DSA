@@ -1,0 +1,113 @@
+https://leetcode.com/problems/sort-colors/
+
+brute : normal sorting 
+
+time : o(n log n) space : o(1)
+
+class Solution 
+{
+    public void sortColors(int[] nums) 
+    {
+        Arrays.sort(nums);    
+        }
+    }
+
+PREFER : OPTIMAL
+
+DUTCH NATIONAL FLAG ALGO
+
+time : o(n) space : o(1)
+
+class Solution 
+{
+    public void sortColors(int[] nums) 
+    {
+        int l=0,m=0,h=nums.length-1;
+        while(m<=h)
+        {
+            if(nums[m]==0)
+            {
+                int temp=nums[l];
+                nums[l]=nums[m];
+                nums[m]=temp;
+                l++;
+                m++;
+            }
+            else if(nums[m]==1)
+            {
+                m++;
+            }
+            else
+            {
+                 int temp=nums[m];
+                nums[m]=nums[h];
+                nums[h]=temp;
+                h--;
+            }
+        }
+    }
+}
+
+Another optimal :
+
+time : o(2n) and space o(1)
+
+import java.util.*;
+public class Main {
+    public static void sortArray(ArrayList<Integer> arr, int n) {
+        int cnt0 = 0, cnt1 = 0, cnt2 = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (arr.get(i) == 0) cnt0++;
+            else if (arr.get(i) == 1) cnt1++;
+            else cnt2++;
+        }
+        for (int i = 0; i < cnt0; i++) arr.set(i, 0); 
+
+        for (int i = cnt0; i < cnt0 + cnt1; i++) arr.set(i, 1); 
+
+        for (int i = cnt0 + cnt1; i < n; i++) arr.set(i, 2);
+    }
+
+    public static void main(String args[]) {
+        int n = 6;
+        ArrayList<Integer> arr = new ArrayList<>(Arrays.asList(new Integer[] {0, 2, 1, 2, 0, 1}));
+        sortArray(arr, n);
+        System.out.println("After sorting:");
+        for (int i = 0; i < n; i++) {
+            System.out.print(arr.get(i) + " ");
+        }
+        System.out.println();
+
+    }
+
+}
+
+
+
+SAMPLE TEST ONLY PASS :
+
+NOT PASS IF (1,0,2) -> o/t as (1,0,2) for below code bt crct o/t is (0,1,2)
+
+class Solution 
+{
+    public void sortColors(int[] nums) 
+    {   
+        int l=0;
+        int r=nums.length-1;
+        while(l<r)
+        {
+            if(nums[l]>nums[r])
+            {
+                int temp=nums[l];
+                nums[l]=nums[r];
+                nums[r]=temp;
+                r--;
+            }
+            else
+            {
+                l++;
+            }
+        }
+    }
+}
