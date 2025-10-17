@@ -1,0 +1,86 @@
+https://leetcode.com/problems/majority-element/
+
+optimal :
+// moorse voting algo
+
+Brute :
+
+time : o(n*2) and space o(1)
+
+public class tUf {
+    public static int majorityElement(int []v) {
+        int n = v.length;
+       for (int i = 0; i < n; i++) {
+            int cnt = 0;
+            for (int j = 0; j < n; j++) {
+                if (v[j] == v[i]) {
+                    cnt++;
+                }
+            }
+            if (cnt > (n / 2))
+                return v[i];
+        }
+
+        return -1;
+    }
+
+another approach : logn
+
+class Solution {
+    public int majorityElement(int[] nums) 
+    {
+        Arrays.sort(nums);
+        int n=nums.length;
+        return nums[n/2];
+    }
+}
+
+better : hashmap
+
+public class tUf {
+    public static int majorityElement(int []v) {
+        int n = v.length;
+        HashMap<Integer, Integer> mpp = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            int value = mpp.getOrDefault(v[i], 0);
+            mpp.put(v[i], value + 1);
+        }
+  for (Map.Entry<Integer, Integer> it : mpp.entrySet()) {
+            if (it.getValue() > (n / 2)) {
+                return it.getKey();
+            }
+        }
+    return -1;
+    }
+
+
+optimal :
+
+// moorse voting algo
+
+class Solution 
+{
+    public int majorityElement(int[] nums) 
+    {
+        int c=0;
+        int curr_ele=0;
+        for(int i=0;i<nums.length;i++)
+        {
+            if(c==0)
+            {
+               curr_ele=nums[i];
+
+            }   
+            if(nums[i]==curr_ele)
+            {
+                c++;
+            }
+            else
+            {
+                c--;
+            }
+        }
+        return curr_ele;
+
+    }
+}
