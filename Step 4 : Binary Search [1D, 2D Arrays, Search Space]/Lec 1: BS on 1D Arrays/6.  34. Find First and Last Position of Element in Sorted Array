@@ -1,0 +1,125 @@
+https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/description/
+
+Brute : o(n) and o(1)
+
+class Solution {
+    public int[] searchRange(int[] nums, int target) 
+    {
+        int first=-1;
+        int last=-1;
+         for(int i=0;i<nums.length;i++)
+         {
+            if(nums[i]==target)
+            {
+                if(first==-1)
+                {
+                    first=i;
+                }
+                last=i;
+            }
+         }
+         return new int[]{first,last};
+    }
+}
+
+
+Optimal : o(2 logn ) and o(1) -> using lower and upper bound
+
+class Solution 
+{
+    public int[] searchRange(int[] nums, int target) 
+    {
+        int lb=lowerbound(nums,target);
+        int ub=upperbound(nums,target);
+        if(lb==nums.length || nums[lb]!=target)
+        {
+            return new int[]{-1,-1};
+        }
+        return new int[]{lb,ub-1};
+    }
+
+     public int lowerbound(int[] nums,int t)
+     {
+        int ans=nums.length;
+        int s=0;
+        int e=nums.length-1;
+        while(s<=e)
+        {
+            int m=(s+e)/2;
+            if(nums[m]>=t)
+            {
+               ans=m;
+               e=m-1;
+            }
+            else
+            {
+                s=m+1;
+            }
+        }
+        return ans;
+     }
+     public int upperbound(int[] nums,int t)
+     {
+        int ans=nums.length;
+        int s=0;
+        int e=nums.length-1;
+        while(s<=e)
+        {
+            int m=(s+e)/2;
+            if(nums[m]>t)
+            {
+               ans=m;
+               e=m-1;
+            }
+            else
+            {
+                s=m+1;
+            }
+        }
+        return ans;
+     }
+}
+
+
+prefer
+
+optimal 3 : o(log n) and o(1)
+
+
+class Solution 
+{
+    public int[] searchRange(int[] arr, int t) 
+    {
+          int[] ans={-1,-1};
+         ans[0]=find(arr,t,true);
+         ans[1]=find(arr,t,false);
+         return ans;
+    }
+      static int find(int[] arr,int t,boolean isfirst)
+    {
+        int s=0;
+        int e=arr.length-1;
+        int ans=-1;
+        while(s<=e)
+        {
+            int mid=(s+e)/2;
+            
+            if(arr[mid]==t)
+            {
+                ans=mid;
+                    if(isfirst) 
+                    {
+                        e=mid-1;
+                    }
+                    else
+                    {
+                        s=mid+1;
+                    }
+            
+            }
+            else if(t<arr[mid]) e=mid-1;
+            else s=mid+1;
+        }
+        return ans;
+    }
+}
