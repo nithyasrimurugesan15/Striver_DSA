@@ -1,0 +1,125 @@
+https://leetcode.com/problems/maximum-subarray/description/
+
+Brute 1 : o(n^3) and o(1)
+
+public class tUf {
+    public static int maxSubarraySum(int[] arr, int n) {
+        int maxi = Integer.MIN_VALUE;
+       for (int i = 0; i < n; i++) {
+            for (int j = i; j < n; j++) {
+                int sum = 0;
+                for (int k = i; k <= j; k++) {
+                    sum += arr[k];
+                }
+              maxi = Math.max(maxi, sum);
+            }
+        }
+ return maxi;
+    }
+    
+BRUTE 2 : o(n^2) and o(1)
+
+public class tUf {
+    public static int maxSubarraySum(int[] arr, int n) {
+        int maxi = Integer.MIN_VALUE;
+        for (int i = 0; i < n; i++) {
+            int sum = 0;
+            for (int j = i; j < n; j++) {
+             sum += arr[j];
+      maxi = Math.max(maxi, sum); 
+            }
+        }
+return maxi;
+    }
+
+
+OPTIMAL : o(n) and o(1)
+
+ class Solution
+{
+    public int maxSubArray(int[] arr) 
+    {
+        int sum=0;
+        int max=Integer.MIN_VALUE;
+        for(int i=0;i<arr.length;i++)
+        {
+            sum+=arr[i];
+            if(sum>max)
+            {
+                max=sum;
+            }
+            if(sum<0)
+            {
+                sum=0;
+            }
+        }
+        return max;
+    }
+}
+
+
+OPTIMAL : o(n) and o(1)
+
+class Solution
+{
+    public int maxSubArray(int[] nums) 
+    {
+        int cs=nums[0];
+        int ms=nums[0];
+        for(int i=1;i<nums.length;i++)
+        {
+            cs=Math.max(nums[i],cs+nums[i]);
+            ms=Math.max(ms,cs);
+        }
+        return ms;
+    }
+}
+
+
+OPTIMAL : o(n) and o(1) 
+
+// PRINT THE ARRAY ALSOO
+
+public class tUf {
+    public static long maxSubarraySum(int[] arr, int n) {
+        long maxi = Long.MIN_VALUE;
+        long sum = 0;
+
+        int start = 0;
+        int ansStart = -1, ansEnd = -1;
+        for (int i = 0; i < n; i++) {
+
+            if (sum == 0) start = i;
+
+            sum += arr[i];
+
+            if (sum > maxi) {
+                maxi = sum;
+
+                ansStart = start;
+                ansEnd = i;
+            }
+
+            if (sum < 0) {
+                sum = 0;
+            }
+        }
+
+      
+        System.out.print("The subarray is: [");
+        for (int i = ansStart; i <= ansEnd; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.print("]n");
+
+        // To consider the sum of the empty subarray
+        // uncomment the following check:
+
+        //if (maxi < 0) maxi = 0;
+
+        return maxi;
+    }
+
+
+
+
