@@ -1,0 +1,35 @@
+Brute : o(n) and o(1) -> linear
+
+class Solution {
+    public int floorSqrt(int n) {
+        int ans = 0;
+        for (int i = 1; i <= n; i++) {
+            if ((long)(i) * i <= n) {
+                ans = i;
+            } else {
+            
+                break;
+            }
+        }
+        return ans;
+    }
+}
+
+Optimal : o(log n) and o(1) -> binary search
+
+class Solution {
+    public int mySqrt(int x) {
+        if (x < 2) return x;
+        int left = 1, right = x / 2, ans = 0;
+        while (left <= right) {
+            long mid = left + (right - left) / 2;
+            if (mid * mid <= x) {
+                ans = (int) mid;
+                left = (int) mid + 1;
+            } else {
+                right = (int) mid - 1;
+            }
+        }
+        return ans;
+    }
+}
