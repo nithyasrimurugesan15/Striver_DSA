@@ -1,0 +1,74 @@
+https://leetcode.com/problems/find-the-smallest-divisor-given-a-threshold/description/
+
+Brute : o(max*n) and o(1)
+
+class Solution {
+    public int smallestDivisor(int[] nums, int threshold) {
+        int m=Integer.MIN_VALUE;
+        int num=0;
+        for(int i=0;i<nums.length;i++)
+        {
+            if(nums[i]>m)
+            {
+                m=nums[i];
+            }
+        }
+        for(int i=1;i<=m;i++)
+        {
+            int sum=0;
+            for(int j=0;j<nums.length;j++)
+            {
+              num=(int)Math.ceil((double)nums[j]/i);
+              sum+=num;
+            }
+            if(sum<=threshold)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+}
+
+
+Optimal :O(log(max(arr[]))*N) and o(1)
+
+class Solution {
+    public int smallestDivisor(int[] nums, int threshold) {
+        int m=Integer.MIN_VALUE;
+        int num=0;
+        for(int i=0;i<nums.length;i++)
+        {
+            if(nums[i]>m)
+            {
+                m=nums[i];
+            }
+        }
+        int s=1;
+        int e=m;
+        int n=0;
+        int ans=-1;
+        while(s<=e)
+        {
+            int mid=s+(e-s)/2;
+           int sum=0;
+            for(int i=0;i<nums.length;i++)
+            {
+                n=(int)Math.ceil((double)nums[i]/mid);
+                sum+=n;
+            }
+            if(sum<=threshold)
+            {
+                ans=mid;
+                e=mid-1;
+            }
+            else
+            {
+                s=mid+1;
+            }
+        }
+        return ans; // return s;
+    }
+}
+
+
