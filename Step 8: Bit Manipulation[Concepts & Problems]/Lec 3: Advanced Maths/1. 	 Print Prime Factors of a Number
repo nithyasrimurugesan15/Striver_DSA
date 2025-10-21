@@ -1,0 +1,105 @@
+Brute :
+
+time : O(n√n)
+space : o(1)
+
+public class Main {
+    public static void main(String[] args) {
+        int n = 8; 
+
+        System.out.println("Prime numbers from 1 to " + n + ":");
+
+        for (int i = 2; i <= n; i++) {
+           if(n%i==0)
+           {
+              if (isPrime(i)) {
+                System.out.print(i + " ");
+            }
+           }
+        }
+    }
+    public static boolean isPrime(int num) {
+        if (num < 2) {
+            return false;
+        }
+        for (int i = 2; i * i <= num; i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+
+
+better :
+
+time :  Total time ≈ √n × 2√n = 2n → O(n)
+space : o(1)
+
+public class Main {
+    public static void main(String[] args) {
+        int n = 8;
+
+        System.out.println("Prime factors of " + n + ":");
+
+        boolean found = false;
+        for (int i = 2; i * i <= n; i++) {
+            if (n % i == 0) {
+                if (isPrime(i)) {
+                    System.out.print(i + " ");
+                    found = true;
+                }
+                if (n / i != i && isPrime(n / i)) {
+                    System.out.print(n / i + " ");
+                    found = true;
+                }
+            }
+        }
+
+        if (!found && isPrime(n)) {
+            System.out.print(n);
+        }
+    }
+
+    public static boolean isPrime(int num) {
+        if (num < 2) return false;
+        for (int i = 2; i * i <= num; i++) {
+            if (num % i == 0) return false;
+        }
+        return true;
+    }
+}
+
+
+
+optimal :
+
+time : O(√n log n)
+space :O(log n)
+
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+      int original = n;
+     List<Integer> factors = new ArrayList<>();
+  for (int i = 2; i * i <= n; i++) {
+            if (n % i == 0) {
+                factors.add(i); 
+                while (n % i == 0) {  
+                    n /= i;
+                }
+            }
+        }
+        if (n > 1) {
+            factors.add(n);
+        }
+
+        System.out.println("Distinct prime factors of " + original + ": " + factors);
+    }
+}
+
+
