@@ -1,0 +1,44 @@
+Brute :
+
+time :  O(N) – Iterating N times, and performing constant time operations in each pass.
+Space Complexity: O(sqrt(N)) – A number N can have at max 2*sqrt(N) divisors, which are stored in the array.
+
+import java.util.Arrays;
+class Solution {
+    public int[] divisors(int n) {
+        int[] temp = new int[n];
+        int count = 0;
+        for (int i = 1; i <= n; i++) {
+            if (n % i == 0) {
+                temp[count++] = i;
+            }
+        }
+        int[] ans = Arrays.copyOf(temp, count);
+        return ans;
+    }
+
+optimal:
+
+Time Complexity: O(sqrt(N)) + O(K*Log(K))
+Space Complexity: O(sqrt(N)) – A number N can have at max 2*sqrt(N) divisors, which are stored in the array.
+
+import java.util.Arrays;
+class Solution {
+    public int[] divisors(int n) {
+        int[] temp = new int[n];
+        int count = 0;
+        int sqrtN = (int) Math.sqrt(n);
+        for (int i = 1; i <=sqrtN; i++)  //   for (int i = 1; i*i <=n; i++) -> default sqrt in collection it takes high tc so use i*i<=n its better
+        {
+            if (n % i == 0) {
+                temp[count++] = i;
+                if(n/i!=i)
+                {
+                   temp[count++]=n/i;
+                }
+            }
+        }
+        int[] ans = Arrays.copyOf(temp, count);
+         Arrays.sort(ans);
+        return ans;
+    }
