@@ -3,11 +3,15 @@ Space Complexity = O(1)
 
 // check if num is power of 2
 
+//prefer
+
 class Main {
     public static void main(String[] args) {
         int n=15;
         int res=n&(n-1);
-        if(res==0)
+// n>0 -> edge true 
+// n=0 -> false
+        if(res==0 && n>0)
         {
            System.out.println("yes");
         }
@@ -16,4 +20,14 @@ class Main {
              System.out.println("no");
         }
     }
+}
+
+
+Approach 2 :
+using bitcount
+
+class Solution {
+  public boolean isPowerOfTwo(int n) {
+    return n >= 0 && Integer.bitCount(n) == 1;
+  }
 }
