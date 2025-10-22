@@ -1,0 +1,57 @@
+Brute : o(n) and o(n)
+
+import java.util.*;
+class Solution {
+    public List<Integer> getDivisors(int N) {
+        List<Integer> res = new ArrayList<>();
+        for (int i = 1; i <= N; i++) {
+            if (N % i == 0) {
+                res.add(i);
+            }
+        }
+        return res;
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Solution sol = new Solution();
+        int N = 36;
+        List<Integer> result = sol.getDivisors(N);
+        System.out.print("Divisors of " + N + ": ");
+        for (int val : result) {
+            System.out.print(val + " ");
+        }
+        System.out.println();
+    }
+}
+
+optimal : o(sqrt(n)) and O(2*sqrt(N))
+
+import java.util.*;
+class Solution {
+    public List<Integer> getDivisors(int N) {
+        List<Integer> res = new ArrayList<>();
+        for (int i = 1; i*i <= N; i++) {
+            if (N % i == 0) {
+                res.add(i);
+                if(i!=n/i)
+                {
+                    res.add(n/i);
+                }  
+            }
+        }
+        return res;
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Solution sol = new Solution();
+        int N = 36;
+        List<Integer> result = sol.getDivisors(N);
+        System.out.print("Divisors of " + N + ": ");
+        for (int val : result) {
+            System.out.print(val + " ");
+        }
+        System.out.println();
+    }
+}
