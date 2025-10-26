@@ -1,7 +1,7 @@
 Approach 1 :
 
-T.C : O(1)
-S.C : O(1)
+T.C : O(n)
+S.C : O(n)
 
 class Main {
     static void name(int i,int n)
