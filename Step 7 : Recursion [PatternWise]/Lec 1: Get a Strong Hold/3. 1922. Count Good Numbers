@@ -1,0 +1,37 @@
+https://leetcode.com/problems/count-good-numbers/description/
+
+1.
+
+o(logn) and o(logn)
+
+class Solution {
+    static final long mod=1_000_000_007;
+    public int countGoodNumbers(long n) 
+    {
+       
+        long ec=(n+1)/2;
+        long oc=n/2;
+        long ew=p(5,ec);
+        long ow=p(4,oc);
+        return (int)((ew*ow)%mod);
+    }
+    public long p(long x,long n)
+    {
+        if(n==0)
+        {
+            return 1;
+        }
+        if(n%2==1)
+        {
+           return (x*p(x,n-1))%mod;
+        }
+        return (p((x%mod*x%mod)%mod,n/2))%mod;
+    }
+}
+
+
+2. striver approach -> refer : https://takeuforward.org/data-structure/count-good-numbers
+i dont understand
+
+3. instead of 1st approach -> finding pow use another iteration method to find power...
+4.  instead of 1st approach -> finding pow use another iteration method to find power as using bit manipulation
