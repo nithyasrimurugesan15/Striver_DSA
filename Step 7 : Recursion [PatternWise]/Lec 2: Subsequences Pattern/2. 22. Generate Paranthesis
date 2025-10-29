@@ -56,30 +56,26 @@ So, total complexity: O(C(n) × n)
 Space Complexity: O(n) recursion depth.
 O(C(n) × n) to store results.
 
-import java.util.*;
-class OptimalSolution {
-    public void backtrack(String curr, int open, int close, int n, List<String> res) {
-        if (curr.length() == 2 * n) {
-            res.add(curr);
-            return;
-        }
-        if (open < n) backtrack(curr + "(", open + 1, close, n, res);
-        if (close < open) backtrack(curr + ")", open, close + 1, n, res);
-    }
-
+class Solution {
     public List<String> generateParenthesis(int n) {
-        List<String> res = new ArrayList<>();
-        backtrack("", 0, 0, n, res);
+        List<String> res=new ArrayList<>();
+        gen("",0,0,n,res);
         return res;
     }
-}
-
-public class Main {
-    public static void main(String[] args) {
-        OptimalSolution sol = new OptimalSolution();
-        List<String> result = sol.generateParenthesis(3);
-        for (String s : result) {
-            System.out.println(s);
+    public void gen(String s,int opn,int clo,int n,List<String> res)
+    {
+        if(s.length()==2*n)
+        {
+            res.add(s);
+            return;
+        }
+        if(opn<n)
+        {
+            gen(s+"(",opn+1,clo,n,res);
+        }
+        if(clo<opn)
+        {
+             gen(s+")",opn,clo+1,n,res);
         }
     }
 }
