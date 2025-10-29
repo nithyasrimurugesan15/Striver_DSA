@@ -1,0 +1,85 @@
+https://leetcode.com/problems/generate-parentheses/
+
+Brute: 
+
+O(2^(2n) * n) due to the generation and validation of all 2^(2n) sequences.
+O(n) space required per sequence.
+
+class Solution {
+    public List<String> generateParenthesis(int n) {
+        List<String> res=new ArrayList<>();
+        generateAll("",n,res);
+        return res;
+    }
+    public void generateAll(String s,int n,List<String> res)
+    {
+        if(s.length()==2*n)
+        {
+            if(isvalid(s))
+                res.add(s);
+            return ;
+        }
+        generateAll(s+"(",n,res);
+        generateAll(s+")",n,res);
+    }
+    public boolean isvalid(String s)
+    {
+        int r=0;
+        for(char c: s.toCharArray())
+        {
+            if(c=='(')
+            {
+                r++;
+            }
+            else
+            {
+                r--;
+            }
+        
+        if(r<0)
+        { 
+            return false;
+        }
+        }
+        return r==0;
+    }
+}
+
+
+
+Optimal :
+
+Time Complexity: O(2^n) (Catalan number): C(n) = (2n)! / (n!(n+1)!) is the number of valid sequences.
+Each sequence takes O(n) to build.
+So, total complexity: O(C(n) × n)
+
+Space Complexity: O(n) recursion depth.
+O(C(n) × n) to store results.
+
+import java.util.*;
+class OptimalSolution {
+    public void backtrack(String curr, int open, int close, int n, List<String> res) {
+        if (curr.length() == 2 * n) {
+            res.add(curr);
+            return;
+        }
+        if (open < n) backtrack(curr + "(", open + 1, close, n, res);
+        if (close < open) backtrack(curr + ")", open, close + 1, n, res);
+    }
+
+    public List<String> generateParenthesis(int n) {
+        List<String> res = new ArrayList<>();
+        backtrack("", 0, 0, n, res);
+        return res;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        OptimalSolution sol = new OptimalSolution();
+        List<String> result = sol.generateParenthesis(3);
+        for (String s : result) {
+            System.out.println(s);
+        }
+    }
+}
