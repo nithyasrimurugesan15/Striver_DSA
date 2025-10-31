@@ -4,10 +4,10 @@ S.C :  O(N/2) -> O(N)
 Approach 1: using left and right var
 
 class Main {
-    static int revarr(int l,int r,int[] arr)
+    static void revarr(int l,int r,int[] arr)
     {
-        if(l==r)
-         return arr[l];
+        if(l>=r)
+         return ;
         //swap(arr[l],arr[r]);
          int temp=arr[l];
          arr[l]=arr[r];
@@ -28,10 +28,10 @@ class Main {
 Approach 2: without using var
 
 class Main {
-    static int revarr(int i,int n,int[] arr)
+    static void revarr(int i,int n,int[] arr)
     {
         if(i>=n/2)
-         return arr[i];
+         return ;
         //swap(arr[l],arr[r]);
          int temp=arr[i];
          arr[i]=arr[n-i-1];
