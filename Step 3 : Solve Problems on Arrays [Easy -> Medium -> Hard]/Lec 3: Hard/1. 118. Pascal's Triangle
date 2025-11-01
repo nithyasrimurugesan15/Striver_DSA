@@ -1,0 +1,86 @@
+https://leetcode.com/problems/pascals-triangle/description/
+
+1. i/t given as n=5 r=3 c=2 means 3rd row la 2nd element print
+
+Time = O(r) and Space = O(1)
+
+import java.util.*;
+class Solution {
+    // Function to compute nCr using iterative formula (no factorials)
+    public static long nCr(int n, int r) {
+        long res = 1;
+        for (int i = 0; i < r; i++) {
+            res = res * (n - i);
+            res = res / (i + 1);
+        }
+        return res;
+    }
+   public static void main(String[] args) {
+        int n = 5; // total rows
+        int r = 3; // row number
+        int c = 2; // column number
+        long element = nCr(r - 1, c - 1);
+        System.out.println("Element at row " + r + ", col " + c + " = " + element);
+    }
+}
+
+
+
+2. print only col if give n=5 means 5th row la -> that elements only print
+
+prefer long in pascal triangle if constraints as <=30 if 30 na it go billion -> ans=ans*(n-i).. use long for ans.
+
+Time = O(n) and Space = O(n)
+
+import java.util.*;
+class Solution {
+    public static List<Integer> generateRow(int n) {
+        List<Integer> res = new ArrayList<>();
+        long ans = 1; // use long to prevent overflow
+        res.add(1);
+
+        for (int i = 1; i < n; i++) {
+            ans = ans * (n - i) / i;
+            res.add((int) ans);
+        }
+
+        return res;
+    }
+ public static void main(String[] args) {
+        int n = 5; // row number
+        List<Integer> row = generateRow(n);
+        System.out.println(row);
+    }
+}
+
+
+
+3. print entire triangle if given  n=5 na from 1 to 5 rows um print lyk leetcode
+
+Time = O(n^2) and Space = O(n^2)
+
+class Solution {
+    public List<List<Integer>> generate(int n) {
+        List<List<Integer>> an=new ArrayList<>();
+        for(int i=1;i<=n;i++)
+        {
+           List<Integer> rres=grres(i);
+           an.add(rres);
+        }
+        return an;
+    }
+    public List<Integer> grres(int n)
+    {
+        List<Integer> res=new ArrayList<>();
+        res.add(1);
+       long ans=1;
+        for(int i=1;i<n;i++)
+        {
+            ans=ans*(n-i);
+            ans=ans/i;
+            res.add((int)ans);
+        }
+        return res;
+    }
+  
+}
