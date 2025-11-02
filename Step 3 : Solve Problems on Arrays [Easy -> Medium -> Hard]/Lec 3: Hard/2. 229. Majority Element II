@@ -1,0 +1,189 @@
+https://leetcode.com/problems/majority-element-ii/description/
+
+1. Extreme Brute force:
+
+Time -> O(n^2) and Space -> O(n)
+
+class Solution {
+    public List<Integer> majorityElement(int[] nums) {
+        List<Integer> res=new ArrayList<>();
+        HashSet<Integer> visited=new HashSet<>();
+        int n=nums.length;
+       
+        for(int i=0;i<n;i++)
+        {
+            if(visited.contains(nums[i]))
+            {
+                continue;
+            }
+            visited.add(nums[i]);
+            int c=0;
+            for(int j=i;j<n;j++)
+            {
+                if(nums[i]==nums[j])
+                {
+                    c++;
+                }
+            }
+            if(c>(n/3))
+            {
+               res.add(nums[i]);
+            }
+        }
+        return res;
+    }
+}
+
+2.Brute force:
+
+Time -> O(n^2) and Space -> O(1)
+
+class Solution {
+    public List<Integer> majorityElement(int[] nums) {
+        List<Integer> res=new ArrayList<>();
+        int n=nums.length;
+       
+        for(int i=0;i<n;i++)
+        {
+            if(res.size()==0 || res.get(0)!=nums[i])
+            {
+            int c=0;
+            for(int j=i;j<n;j++)
+            {
+                if(nums[i]==nums[j])
+                {
+                    c++;
+                }
+            }
+            
+            if(c>(n/3))
+            {
+               res.add(nums[i]);
+            }
+            }
+            if (res.size() == 2) break;
+        }
+        return res;
+    }
+}
+
+3.Another Brute force:
+
+Time -> O(n^2) and Space -> O(1)
+
+class Solution {
+    public List<Integer> majorityElement(int[] nums) {
+        List<Integer> res=new ArrayList<>();
+        int n=nums.length;
+         for(int i=0;i<n;i++)
+        {
+            if(!res.contains(nums[i])){
+            int c=0;
+            for(int j=i;j<n;j++)
+            {
+                if(nums[i]==nums[j])
+                {
+                    c++;
+                }
+            }
+            
+            if(c>(n/3))
+            {
+               res.add(nums[i]);
+            }
+            }
+        }
+        return res;
+    }
+}
+
+4. better using hashmap
+
+O(N*logN) and o(n)
+
+class Solution {
+    public List<Integer> majorityElement(int[] nums) {
+           List<Integer> res=new ArrayList<>();
+           HashMap<Integer,Integer> hm=new HashMap<>();
+           int n=nums.length;
+           for(int i=0;i<n;i++)
+           {
+             int cnt = hm.getOrDefault(nums[i], 0);
+             hm.put(nums[i],cnt+1);
+             if((hm.get(nums[i]))>(n/3) && !res.contains(nums[i]))
+             {
+                res.add(nums[i]);
+             }
+             if (res.size() == 2) break;
+           }
+           return res;
+    }
+}
+
+5. OPTIMAL:
+
+O(N) AND O(1)
+
+class Solution {
+    public List<Integer> majorityElement(int[] nums) {
+        List<Integer> res=new ArrayList<>();
+        int n=nums.length;
+        int cnt1=0;
+        int cele1=Integer.MIN_VALUE;
+         int cnt2=0;
+        int cele2=Integer.MIN_VALUE;
+        for(int i=0;i<n;i++)
+        {
+            if(cnt1==0 && nums[i]!=cele2)
+            {
+                cnt1=1;
+                cele1=nums[i];
+            }
+            else if(cnt2==0 && nums[i]!=cele1)
+            {
+                cnt2=1;
+                cele2=nums[i];
+            }
+            else if(cele1==nums[i])
+            {
+                cnt1++;
+            }
+             else if(cele2==nums[i])
+            {
+                cnt2++;
+            }
+            else
+            {
+                cnt1--;
+                cnt2--;
+            }
+        }
+        cnt1=0;cnt2=0;
+        for(int i=0;i<n;i++)
+        {
+            if(cele1==nums[i])
+            {
+                cnt1++;
+            }
+            if(cele2==nums[i])
+            {
+                cnt2++;
+            }
+        }
+         int mini = (int)(n / 3) + 1;
+        if(cnt1>=mini)
+        {
+            res.add(cele1);
+        }
+        if(cnt2>=mini)
+        {
+            res.add(cele2);
+        }
+
+          // Uncomment the following line
+        // if it is told to sort the answer array:
+        //Collections.sort(ls); //TC --> O(2*log2) ~ O(1);
+        
+        return res;
+    }
+}
