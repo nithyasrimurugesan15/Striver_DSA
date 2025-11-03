@@ -50,8 +50,31 @@ class Solution {
 }
 }
 
+Approach 3 : better 
 
-Approach 3 : optimal
+o(n) and o(n)
+
+class Solution {
+  public int missingNumber(int[] nums) {
+    int n = nums.length;
+    int[] has=new int[n+1];
+    for(int i=0;i<n;i++)
+    {
+        has[nums[i]]++;
+    }
+    for(int i=0;i<=n;i++)
+    {
+        if(has[i]==0)
+        {
+            return i;
+        }
+    }
+    return -1;
+  }
+}
+
+
+Approach 4 : optimal
 
 tc o(n) and space o(1)
 
@@ -60,7 +83,9 @@ class Solution {
     int ans = nums.length;
 
     for (int i = 0; i < nums.length; ++i)
+    {
       ans ^= i ^ nums[i];
+    }
 
     return ans;
     }
@@ -68,16 +93,17 @@ class Solution {
 
 (OR)
 
-import java.util.*;
-public class tUf {
-    public static int missingNumber(int []a, int N) {
-
-        int xor1 = 0, xor2 = 0;
-
-        for (int i = 0; i < N - 1; i++) {
-            xor2 = xor2 ^ a[i]; 
-            xor1 = xor1 ^ (i + 1); 
-        }
-        xor1 = xor1 ^ N;
-        return (xor1 ^ xor2); 
+class Solution {
+  public int missingNumber(int[] nums) {
+    int x1=0;
+    int x2=0;
+    int n=nums.length;
+    for(int i = 0; i<n; i++)
+    {
+       x1=x1^i;
+       x2=x2^nums[i];
     }
+    x1=x1^n;
+    return x1^x2;
+  }
+}
