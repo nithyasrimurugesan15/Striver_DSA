@@ -1,0 +1,100 @@
+| Operation                      | Time Complexity        | Space Complexity |
+| ------------------------------ | ---------------------- | ---------------- |
+| `stackPush()`                  | O(1)                   | O(1)             |
+| `stackPop()`                   | O(1)                   | O(1)             |
+| `stackTop()`                   | O(1)                   | O(1)             |
+| `stackSize()`                  | O(1)                   | O(1)             |
+| `stackIsEmpty()`               | O(1)                   | O(1)             |
+| `printStack()`                 | O(N)                   | O(1)             |
+| Overall Stack (N elements)     | O(1) per operation     | O(N)             |
+
+
+class stack {
+  //  Node class to represent each element in the stack
+  private class stackNode {
+    int data;
+    stackNode next;
+    stackNode(int d) {
+      data = d;
+      next = null;
+    }
+  }
+
+  //  Stack variables
+  stackNode top;
+  int size;
+
+  //  Constructor
+  stack() {
+    this.top = null;
+    this.size = 0;
+  }
+
+  //  Push operation (insert at top)
+  public void stackPush(int x) {
+    stackNode element = new stackNode(x);
+    element.next = top;
+    top = element;
+    System.out.println("Element pushed: " + x);
+    size++;
+  }
+
+  //  Pop operation (remove from top)
+  public int stackPop() {
+    if (top == null) {
+      System.out.println("Stack Underflow!");
+      return -1;
+    }
+    int topData = top.data;
+    stackNode temp = top;
+    top = top.next;
+    size--;
+    return topData;
+  }
+
+  //  Peek operation (returns top element without removing it)
+  public int stackTop() {
+    if (top == null) {
+      System.out.println("Stack is empty!");
+      return -1;
+    }
+    return top.data;
+  }
+
+  //  Get current size
+  public int stackSize() {
+    return size;
+  }
+
+  //  Check if stack is empty
+  public boolean stackIsEmpty() {
+    return top == null;
+  }
+
+  //  Print all elements (top to bottom)
+  public void printStack() {
+    stackNode current = top;
+    System.out.print("Stack elements: ");
+    while (current != null) {
+      System.out.print(current.data + " ");
+      current = current.next;
+    }
+    System.out.println();
+  }
+}
+
+//  Driver class
+class Main {
+  public static void main(String args[]) {
+    stack s = new stack();
+    s.stackPush(10);
+    s.stackPush(20);
+    s.printStack();
+
+    System.out.println("Top element: " + s.stackTop());
+    System.out.println("Element popped: " + s.stackPop());
+    System.out.println("Stack size: " + s.stackSize());
+    System.out.println("Top after pop: " + s.stackTop());
+    System.out.println("Stack is empty or not: " + s.stackIsEmpty());
+  }
+}
