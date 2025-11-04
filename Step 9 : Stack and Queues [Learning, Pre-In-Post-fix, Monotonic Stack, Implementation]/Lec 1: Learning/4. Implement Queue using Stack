@@ -1,0 +1,87 @@
+| Operation                      | Time Complexity    | Space Complexity |
+| ------------------------------ | ------------------ | ---------------- |
+| `enqueue()`                    | O(1)               | O(N)             |
+| `dequeue()`                    | O(N)               | O(N)             |
+| `peek()`                       | O(N)               | O(N)             |
+| `isEmpty()`                    | O(1)               | O(1)             |
+| `size()`                       | O(1)               | O(1)             |
+| **Overall Queue (N elements)** | **O(N) amortized** | **O(N)**         |
+
+
+import java.util.Stack;
+class Queue {
+    Stack<Integer> s1 = new Stack<>(); // main stack
+    Stack<Integer> s2 = new Stack<>(); // helper stack
+
+    // Enqueue operation (O(1))
+    void enqueue(int x) {
+        s1.push(x);
+        System.out.println(x + " enqueued");
+    }
+
+    // Dequeue operation (O(N))
+    int dequeue() {
+        if (isEmpty()) {
+            System.out.println("Queue is Empty");
+            return -1;
+        }
+
+        // Move all elements except last from s1 → s2
+        while (s1.size() > 1) {
+            s2.push(s1.pop());
+        }
+
+        // Pop the last element (front of queue)
+        int front = s1.pop();
+
+        // Move elements back to s1
+        while (!s2.isEmpty()) {
+            s1.push(s2.pop());
+        }
+
+        System.out.println(front + " dequeued");
+        return front;
+    }
+
+    // Peek front element (O(N))
+    int peek() {
+        if (isEmpty()) {
+            System.out.println("Queue is Empty");
+            return -1;
+        }
+
+        while (s1.size() > 1) {
+            s2.push(s1.pop());
+        }
+
+        int front = s1.peek(); // top element of s1 is queue front
+
+        // Move back
+        while (!s2.isEmpty()) {
+            s1.push(s2.pop());
+        }
+
+        return front;
+    }
+
+    boolean isEmpty() {
+        return s1.isEmpty();
+    }
+
+    int size() {
+        return s1.size();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Queue q = new Queue();
+        q.enqueue(10);
+        q.enqueue(20);
+        q.enqueue(30);
+        System.out.println("Front element: " + q.peek());
+        q.dequeue();
+        System.out.println("Front after dequeue: " + q.peek());
+        System.out.println("Queue size: " + q.size());
+    }
+}
