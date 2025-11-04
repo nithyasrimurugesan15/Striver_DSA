@@ -2,6 +2,8 @@ https://leetcode.com/problems/implement-queue-using-stacks/
 
 o(n) and o(n)
 
+perfer ->> below 1st onlyyy
+
 class MyQueue {
    Stack<Integer> s1=new Stack<>();
    Stack<Integer> s2=new Stack<>();
@@ -94,6 +96,8 @@ class MyQueue {
 
 
 (or) using deque of arraydeque
+
+---> not perfer for interview
 
 class MyQueue {
   Deque <Integer> q;
