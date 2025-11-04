@@ -1,4 +1,18 @@
-O(N) AND O(N)
+Overall (Stack)
+t.c : O(1) per operation
+s.c : O(N)
+
+Time Complexity:
+
+pop function: O(1)
+push function: O(1)
+top function: O(1)
+size function: O(1)
+
+Space Complexity:
+
+Whole Queue: O(n)
+
 
 import java.util.*;
 public class tuf {
