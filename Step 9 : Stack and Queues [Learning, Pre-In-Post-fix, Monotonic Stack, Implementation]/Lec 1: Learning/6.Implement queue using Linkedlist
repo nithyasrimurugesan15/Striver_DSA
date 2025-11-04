@@ -1,0 +1,99 @@
+| Operation                      | Time Complexity        | Space Complexity |
+| ------------------------------ | ---------------------- | ---------------- |
+| `enqueue()`                    | O(1)                   | O(1)             |
+| `dequeue()`                    | O(1)                   | O(1)             |
+| `peek()`                       | O(1)                   | O(1)             |
+| `isEmpty()`                    | O(1)                   | O(1)             |
+| `getSize()`                    | O(1)                   | O(1)             |
+| `printQueue()`                 | O(N)                   | O(1)             |
+| **Overall Queue (N elements)** | **O(1) per operation** | **O(N)**         |
+
+
+class Node {
+    int data;
+    Node next;
+
+    Node(int value) {
+        data = value;
+        next = null;
+    }
+}
+
+class Queue {
+    Node front = null; // front pointer
+    Node rear = null;  // rear pointer
+    int size = 0;
+
+    // Enqueue → insert element at rear
+    void enqueue(int value) {
+        Node temp = new Node(value);
+        if (front == null) { // queue empty
+            front = temp;
+            rear = temp;
+        } else {
+            rear.next = temp;
+            rear = temp;
+        }
+        System.out.println(value + " enqueued into Queue");
+        size++;
+    }
+
+    // Dequeue → remove element from front
+    int dequeue() {
+        if (front == null) {
+            System.out.println("Queue is Empty");
+            return -1;
+        }
+        int removed = front.data;
+        front = front.next;
+        if (front == null) rear = null; // queue became empty
+        size--;
+        System.out.println(removed + " dequeued from Queue");
+        return removed;
+    }
+
+    // Peek → view front element
+    int peek() {
+        if (front == null) {
+            System.out.println("Queue is Empty");
+            return -1;
+        }
+        return front.data;
+    }
+
+    // Return size
+    int getSize() {
+        return size;
+    }
+
+    // Check if empty
+    boolean isEmpty() {
+        return front == null;
+    }
+
+    // Print elements
+    void printQueue() {
+        Node curr = front;
+        System.out.print("Queue elements: ");
+        while (curr != null) {
+            System.out.print(curr.data + " ");
+            curr = curr.next;
+        }
+        System.out.println();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Queue q = new Queue();
+        q.enqueue(10);
+        q.enqueue(20);
+        q.enqueue(30);
+        q.printQueue();
+        System.out.println("Front element: " + q.peek());
+        q.dequeue();
+        q.printQueue();
+        System.out.println("Queue size: " + q.getSize());
+        System.out.println("Queue is empty: " + q.isEmpty());
+    }
+}
