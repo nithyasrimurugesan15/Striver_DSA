@@ -1,0 +1,88 @@
+https://leetcode.com/problems/min-stack/
+
+time -> O(1) and space -> O(2N) → O(N)
+
+class MinStack {
+   Stack<Integer> q;
+   Stack<Integer> s;
+    public MinStack() {
+        q = new Stack<>();
+        s = new Stack<>();
+    }
+    
+    public void push(int val) {
+        q.push(val);
+        if(s.isEmpty() || val<=s.peek())
+        {
+            s.push(val);
+        }
+    }
+    
+    public void pop() {
+       int p= q.pop();
+        if(p==s.peek())
+        {
+            s.pop();
+        }
+    }
+    
+    public int top() {
+        return q.peek();
+    }
+    
+    public int getMin() {
+          return s.peek();
+    }
+}
+
+
+
+2.
+
+Time Complexity: O(1)
+Space Complexity: O(2N) -> O(N)
+
+class Pair
+{
+    int x;
+    int y;
+    Pair(int x,int y)
+    {
+        this.x=x;
+        this.y=y;
+    }
+}
+class MinStack {
+    Stack < Pair > st;
+    public MinStack() {
+        st = new Stack<>();
+    }
+    
+    public void push(int val) {
+        int min;
+        if(st.isEmpty())
+        {
+            min=val;
+        }
+        else
+        {
+            min=Math.min(val,st.peek().y);
+        }
+        st.push(new Pair(val,min));
+    }
+    
+    public void pop() {
+        st.pop();
+    }
+    
+    public int top() {
+        return st.peek().x;
+    }
+    
+    public int getMin() {
+        return st.peek().y;
+    }
+}
+
+
+3. See tuf last approach
