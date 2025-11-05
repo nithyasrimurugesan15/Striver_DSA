@@ -1,0 +1,106 @@
+Time Complexity: O(N)
+Space Complexity: O(N)
+
+1. reverse the infix exp 
+2. swap ( as -> )  and ) as -> (
+3. convert infix to postfix -> some certain condition change in prec loop
+4. reverse the postfix exp
+5. return ans;
+
+import java.util.Stack;
+class TUF {
+
+    static int Prec(char ch) {
+        switch (ch) {
+            case '+':
+            case '-':
+                return 1;
+            case '*':
+            case '/':
+                return 2;
+            case '^':
+                return 3; // right-associative
+        }
+        return -1;
+    }
+
+    static String infixToPostfix(String exp) {
+        String result = "";
+        Stack<Character> stack = new Stack<>();
+
+        for (int i = 0; i < exp.length(); ++i) {
+            char c = exp.charAt(i);
+
+            
+            if (Character.isLetterOrDigit(c)) {
+                result += c;
+            }
+
+            else if (c == '(') {
+                stack.push(c);
+            }
+
+            else if (c == ')') {
+                while (!stack.isEmpty() && stack.peek() != '(') {
+                    result += stack.pop();
+                }
+                if (!stack.isEmpty() && stack.peek() == '(')
+                    stack.pop();
+            }
+
+            else {
+                while (!stack.isEmpty() &&
+                      (Prec(c) < Prec(stack.peek()) ||
+                      (Prec(c) == Prec(stack.peek()) && c != '^'))) {
+                    result += stack.pop();
+                }
+                stack.push(c);
+            }
+        }
+
+        while (!stack.isEmpty()) {
+            if (stack.peek() == '(')
+                return "Invalid Expression";
+            result += stack.pop();
+        }
+
+        return result;
+    }
+
+    static String reverse(String s) {
+        StringBuilder sb = new StringBuilder(s);
+        return sb.reverse().toString();
+    }
+
+   
+    static String infixToPrefix(String exp) {
+       
+        StringBuilder input = new StringBuilder(exp);
+        input.reverse();
+
+        for (int i = 0; i < input.length(); i++) {
+            if (input.charAt(i) == '(') {
+                input.setCharAt(i, ')');
+            } else if (input.charAt(i) == ')') {
+                input.setCharAt(i, '(');
+            }
+        }
+
+        String postfix = infixToPostfix(input.toString());
+
+        String prefix = reverse(postfix);
+        return prefix;
+    }
+
+  
+    public static void main(String[] args) {
+        String exp1 = "(p+q)*(m-n)";
+        String exp2 = "a^b^c";
+
+        System.out.println("Infix: " + exp1);
+        System.out.println("Prefix: " + infixToPrefix(exp1));
+
+        System.out.println("\nInfix: " + exp2);
+        System.out.println("Prefix: " + infixToPrefix(exp2));
+    }
+}
