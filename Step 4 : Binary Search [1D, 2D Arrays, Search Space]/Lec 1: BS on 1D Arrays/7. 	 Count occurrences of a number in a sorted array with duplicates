@@ -50,3 +50,53 @@ class Solution {
         return s - f + 1;       
     }
 }
+
+
+
+another : not prefer above prb would prefer
+
+o(logn) and o(1)
+
+public class Main {
+    public static int countOccurrences(int[] arr, int t) {
+        int s = 0, e = arr.length - 1;
+        int count = 0;
+
+        while (s <= e) {
+            int m = (s + e) / 2;
+
+            if (arr[m] == t) {
+                count++; 
+
+                int left = m - 1;
+                while (left >= 0 && arr[left] == t) {
+                    count++;
+                    left--;
+                }
+           
+                int right = m + 1;
+                while (right < arr.length && arr[right] == t) {
+                    count++;
+                    right++;
+                }
+                break; 
+            } 
+            else if (arr[m] < t) {
+                s = m + 1;
+            } 
+            else {
+                e = m - 1;
+            }
+        }
+
+        return count;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 2, 2, 3, 4};
+        int t = 2;
+
+        System.out.println("Count = " + countOccurrences(arr, t));
+    }
+}
+
