@@ -35,3 +35,30 @@ public class tUf {
     }
     return res;
   }
+
+another : use ub -1
+
+o(logn) and o(1)
+
+public int lastOccurrence(int[] nums, int t) {
+    int s = 0;
+    int e = nums.length - 1;
+
+    while (s <= e) {
+        int m = (s + e) / 2;
+
+        if (nums[m] > t) {
+            e = m - 1;
+        } else {
+            s = m + 1;
+        }
+    }
+
+    int last = s - 1; 
+
+    if (last >= 0 && nums[last] == t)
+        return last;
+    else
+        return -1; // not found
+}
+
