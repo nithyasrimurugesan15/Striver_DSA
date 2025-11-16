@@ -1,3 +1,7 @@
+Time Complexity: O(N), we traverse the entire linked list once in worst case to search for the required value.
+Space Complexity: O(1) , we use a constant amount of additional space, regardless of the linked list's length to search for an element.
+
+
 class Node
 {
     int data;
