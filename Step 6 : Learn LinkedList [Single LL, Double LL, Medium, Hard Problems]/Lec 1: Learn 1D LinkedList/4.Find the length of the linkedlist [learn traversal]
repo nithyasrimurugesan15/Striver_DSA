@@ -1,3 +1,7 @@
+Time Complexity: O(N), we traverse the entire linked list once to find the total number of nodes.
+Space Complexity: O(1) , we use fixed number of pointers and variables to find the length of linked list.
+
+
 class Node
 {
     int data;
