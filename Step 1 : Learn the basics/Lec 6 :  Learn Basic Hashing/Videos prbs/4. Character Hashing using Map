@@ -10,7 +10,7 @@ class Main {
         // Input string
         String s = input.next();
 
-        // HashMap for character frequency
+         //  HashMap for character frequency
         Map<Character, Integer> hash = new HashMap<>();
 
         for (int i = 0; i < s.length(); i++) {
