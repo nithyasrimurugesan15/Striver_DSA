@@ -40,6 +40,8 @@ class ll
          fi.next=head;
          head=fi;
          return head;
+        //  Node fi=new Node(val,head);
+        //  return fi;
      }
     static void display(Node head) {
         Node temp=head;
