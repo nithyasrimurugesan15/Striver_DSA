@@ -43,6 +43,7 @@ class ll {
         Node newNode=temp.prev;
         newNode.next=null;
         temp.prev=null;
+        // temp.prev.next=null;
         
         return head;
     }
