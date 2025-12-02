@@ -4,7 +4,15 @@ O(N) and O(N)
 
 class MyStack 
 {
-     Queue<Integer> q=new LinkedList<>();
+
+   // Queue<Integer> q;
+   // public MyStack() 
+   // {
+   //    q=new LinkedList<>();
+   // }
+
+
+   Queue<Integer> q=new LinkedList<>();
     public MyStack() 
     {
        
