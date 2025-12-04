@@ -32,3 +32,48 @@ class Solution {
     }
 }
 
+
+class Solution {
+    public String reverseWords(String s) 
+    {
+        // s=s.trim()+" ";
+        String result="";
+        String res="";
+        Stack<String> st=new Stack<>();
+        for(int i=0;i<s.length();i++)
+        {
+            char c=s.charAt(i);
+            if(c!=' ')
+            {
+                res+=c;
+            }
+            else if(c==' ')
+            {
+                if(res.length()!=0)
+                {
+                    st.push(res);
+                    res="";
+                }
+                else
+                {
+                    continue;
+                }
+            }
+
+        }
+        if(res.length()!=0)
+        {
+            st.push(res);
+        }
+
+        while(st.size()>1)
+        {
+            result=result+st.pop()+" ";
+        }
+        result+=st.pop();
+        return result;    
+    }
+}
+
+
+Appracoh optimal  : two pointer
