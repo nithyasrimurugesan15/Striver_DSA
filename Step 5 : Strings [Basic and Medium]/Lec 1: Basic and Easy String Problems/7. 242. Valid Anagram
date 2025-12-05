@@ -1,0 +1,88 @@
+https://leetcode.com/problems/valid-anagram/description/
+
+
+Appraoch 1 : not prefer bcoz it runs slower with tc 
+
+o( nlogn) and o(n)
+
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        if(s.length()!=t.length())
+        {
+            return false;
+        }
+        char[] a=s.toCharArray();
+        char[] b=t.toCharArray();
+        Arrays.sort(a);
+        Arrays.sort(b);
+        return Arrays.equals(a,b);
+
+    }
+}
+
+Appraoch 2 : prfer optimal
+
+o(n) and o(n)
+
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        if(s.length()!=t.length())
+        {
+            return false;
+        }
+        Map<Character,Integer> hm=new HashMap<>();
+        for(char ch:s.toCharArray())
+        {
+            hm.put(ch,hm.getOrDefault(ch,0)+1);
+        }
+          for(char ch:t.toCharArray())
+        {
+            if(hm.containsKey(ch))
+            {
+                hm.put(ch,hm.get(ch)-1);
+            }
+            else
+            {
+                return false;
+            }
+        }
+        for(int val:hm.values())
+        {
+            if(val!=0)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+Appraoch 3 :  prfer if i/t accepts only lowercase letters 
+
+o(n) and o(1) 
+
+space  o(1) why -> : Because the frequency array has a fixed size of 26, the memory used does not grow with input size.
+                     Any fixed-size structure is considered O(1) space in Big-O notation.
+
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        if(s.length()!=t.length())
+        {
+            return false;
+        }
+        int[] freq=new int[26];
+        for(int i=0;i<s.length();i++)
+        {
+            freq[s.charAt(i)-'a']++;
+             freq[t.charAt(i)-'a']--;
+        }
+        for(int f:freq)
+        {
+            if(f!=0)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+}
