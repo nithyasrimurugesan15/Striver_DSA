@@ -1,0 +1,41 @@
+https://leetcode.com/problems/rotate-string/
+
+Approach 1 : brute : 
+time : O((2n)×(2n)×n)=O(n^3) 
+space : o(n)
+
+class Solution {
+    public boolean rotateString(String s, String goal) {
+        if(s.length()!=goal.length())
+        {
+            return false;
+        }
+        String res=s+s;
+        for(int i=0;i<res.length();i++)
+        {
+            for(int j=i+1;j<res.length();j++)
+            {
+                if(res.substring(i,j).equals(goal))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+}
+
+Approach 2 : optimal :  O(n)and O(n)
+
+class Solution
+{
+    public boolean rotateString(String s, String goal)
+    {
+        if(s.length()!=goal.length())
+        {
+            return false;
+        }
+        String res=s+s;
+        return res.contains(goal);
+    }
+}
