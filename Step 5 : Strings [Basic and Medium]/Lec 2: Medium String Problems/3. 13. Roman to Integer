@@ -1,0 +1,33 @@
+https://leetcode.com/problems/roman-to-integer/submissions/1848051978/
+
+time  : o(n) 
+space : o(1) -> Fixed-size HashMap (7 entries)
+
+class Solution {
+    public int romanToInt(String s) {
+        Map<Character,Integer> hm=new HashMap<>();
+        hm.put('I',1);
+        hm.put('V',5);
+        hm.put('X',10);
+        hm.put('L',50);
+        hm.put('C',100);
+        hm.put('D',500);
+        hm.put('M',1000);
+        int res=0;
+        for(int i=0;i<s.length();i++)
+        {
+            char ch=s.charAt(i);
+            if(i+1<s.length() && hm.get(s.charAt(i+1))>hm.get(ch) )
+            {
+               res+=hm.get(s.charAt(i+1))- hm.get(ch);
+               i+=1;
+            }
+            else
+            {
+                res+=hm.get(ch);
+            }
+
+        }
+      return res;
+    }
+}
