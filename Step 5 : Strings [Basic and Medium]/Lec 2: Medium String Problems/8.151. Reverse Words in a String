@@ -1,0 +1,99 @@
+https://leetcode.com/problems/reverse-words-in-a-string/
+
+prefer : optimal -> tw pointers approach -> later see -> o(n) and o(1)
+
+use stringbuilder instead of string -> bcoz it runs faster
+
+approach : use stringbuilder -> o(n) and o(n)
+
+class Solution {
+    public String reverseWords(String s) 
+    {
+        StringBuilder current = new StringBuilder();   // replaces res += c
+        Stack<String> st = new Stack<>();
+        
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+
+            if (c != ' ') {
+                current.append(c);  // O(1)
+            } 
+            else {
+                if (current.length() != 0) {
+                    st.push(current.toString());  
+                    current.setLength(0);        
+                }
+            }
+        }
+
+        // For last word
+        if (current.length() != 0) {
+            st.push(current.toString());
+        }
+        StringBuilder result = new StringBuilder();
+
+        while (st.size() > 1) {
+            // result.append(st.pop()+" "); beats -> 34.0
+             result.append(st.pop()).append(" "); // beats -> 64.0
+        }
+        result.append(st.pop());
+
+        return result.toString();
+    }
+}
+
+
+approach : use string
+
+string : string is immutable
+
+o(n^2) -> Because res += c creates a new string every time, causing repeated copying of growing strings → total = 1 + 2 + 3 + … + n = O(n²).
+
+1	  create "a"	    1 character copied
+2	  create "ab"   	2 characters copied
+n   creates string  n characters copied
+    of length n           
+
+space : o(n) -> stack + result
+
+class Solution {
+    public String reverseWords(String s) 
+    {
+        // s=s.trim()+" ";
+        StringBuilder result=new StringBuilder();
+        String res="";
+        Stack<String> st=new Stack<>();
+        for(int i=0;i<s.length();i++)
+        {
+            char c=s.charAt(i);
+            if(c!=' ')
+            {
+                res+=c;
+            }
+            else if(c==' ')
+            {
+                if(res.length()!=0)
+                {
+                    st.push(res);
+                    res="";
+                }
+              
+            }
+
+        }
+        if(res.length()!=0)
+        {
+            st.push(res);
+        }
+
+        while(st.size()>1)
+        {
+            result.append(st.pop()+" ");
+        }
+        result.append(st.pop());
+        return result.toString();    
+    }
+}
+
+
+
