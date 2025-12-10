@@ -49,7 +49,7 @@ while (curr != null) {
     curr = curr.prev;
 }
 
-return temp.prev;
+ return (temp != null) ? temp.prev : head;
 }
     static void display(Node head) {
         Node temp=head;
