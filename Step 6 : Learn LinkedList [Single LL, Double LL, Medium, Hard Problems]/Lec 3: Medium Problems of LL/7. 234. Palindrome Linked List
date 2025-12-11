@@ -1,0 +1,66 @@
+brute : o(2n) and o(n) -> using stack ds
+
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        Stack<Integer> st=new Stack<>();
+        ListNode temp=head;
+        while(temp!=null)
+        {
+            st.push(temp.val);
+            temp=temp.next;
+        }
+        temp=head;
+        while(temp!=null){
+            if(temp.val!=st.pop())
+            {
+                return false;
+            }
+            temp=temp.next;
+        }
+        return true;
+    }
+}
+
+
+optimal : o(n) and o(1)
+
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        ListNode slow=head;
+        ListNode fast=head;
+        while(fast.next!=null && fast.next.next!=null)
+        {
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        ListNode newnode=reverse(slow.next);
+        ListNode first=head;
+        ListNode second=newnode;
+        while(second!=null)
+        {
+            if(first.val!=second.val)
+            {
+                reverse(newnode);
+                return false;
+            }
+            first=first.next;
+            second=second.next;
+        }
+        reverse(newnode);
+        return true;
+
+    }
+    public ListNode reverse(ListNode head)
+    {
+       ListNode temp=head;
+       ListNode prev=null;
+       while(temp!=null)
+       {
+        ListNode n=temp.next;
+        temp.next=prev;
+        prev=temp;
+        temp=n;
+       }
+       return prev;
+    }
+}
