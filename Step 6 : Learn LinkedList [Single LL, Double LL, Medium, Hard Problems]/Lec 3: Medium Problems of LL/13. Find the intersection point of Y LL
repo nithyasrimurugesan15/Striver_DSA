@@ -4,6 +4,8 @@ Approach 1 : Brute -> Hashing -> external ds
 
 time : and space :
 
+USING MAP :
+
 public class Solution 
 {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) 
@@ -19,6 +21,32 @@ public class Solution
         while(temp!=null)
         {
             if(mpp.containsKey(temp))
+            {
+                return temp;
+            }
+            temp=temp.next;
+        }
+        return null;
+    }
+}
+
+USING SET : 
+
+public class Solution 
+{
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) 
+    {
+        HashSet<ListNode> mpp=new HashSet<>();
+        ListNode temp=headA;
+        while(temp!=null)
+        {
+            mpp.add(temp);
+            temp=temp.next;
+        }
+        temp=headB;
+        while(temp!=null)
+        {
+            if(mpp.contains(temp))
             {
                 return temp;
             }
