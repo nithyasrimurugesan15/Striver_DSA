@@ -2,7 +2,7 @@ https://leetcode.com/problems/linked-list-cycle/
 
 approach 1: hashing
 
-t.c : O(N * 2 * log(N)). 
+t.c : O(N). 
 s.c : o(n)
 
 public class Solution {
@@ -20,7 +20,7 @@ public class Solution {
 approach 2: optimal : tortoise and hare method:
 
 t.c : O(N). 
-s.c : o(n)
+s.c : o(1)
 
 public class Solution {
     public boolean hasCycle(ListNode head) {
