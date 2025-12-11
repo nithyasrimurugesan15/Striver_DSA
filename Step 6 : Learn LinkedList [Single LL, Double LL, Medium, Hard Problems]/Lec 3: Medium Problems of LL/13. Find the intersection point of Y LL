@@ -2,7 +2,7 @@ https://leetcode.com/problems/intersection-of-two-linked-lists/
 
 Approach 1 : Brute -> Hashing -> external ds
 
-time : and space :
+time : and space :O(N + M)  and O(N)
 
 USING MAP :
 
@@ -30,7 +30,7 @@ public class Solution
     }
 }
 
-USING SET : 
+USING SET :  O(N + M)  and O(N)
 
 public class Solution 
 {
