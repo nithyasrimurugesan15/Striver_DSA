@@ -1,0 +1,53 @@
+https://www.geeksforgeeks.org/problems/flattening-a-linked-list/1
+
+time  : O(N x 2M) 
+space : wd rec   : o(n)
+        wo/t rec : o(1)
+
+class Solution {
+    public Node flatten(Node root) {
+        // code here
+        if(root==null || root.next==null)
+        {
+            return root;
+        }
+        Node mnode=flatten(root.next);
+        root=merge(root,mnode);
+        return root;
+        
+    }
+    public Node merge(Node list1,Node list2)
+    {
+        Node dum=new Node(-1);
+        Node res=dum;
+        while(list1!=null && list2!=null)
+        {
+            if(list1.data<list2.data)
+            {
+                res.bottom=list1;
+                res=list1;
+                list1=list1.bottom;
+            }
+            else
+            {
+                res.bottom=list2;
+                res=list2;
+                list2=list2.bottom;
+            }
+            res.next=null;
+        }
+        if(list1==null)
+        {
+            res.bottom=list2;
+        }
+        else
+        {
+            res.bottom=list1;
+        }
+        if(dum.bottom!=null)
+        {
+            dum.bottom.next=null;
+        }
+        return dum.bottom;
+    }
+}
