@@ -1,3 +1,5 @@
+Heap sort is n log n because heapify is done n times
+
 O(n log n) and o(1)
 
 Ascending order :
