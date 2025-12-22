@@ -1,0 +1,54 @@
+https://leetcode.com/problems/binary-tree-inorder-traversal/description/
+
+Inorder traversal takes O(n) time and O(h) auxiliary space due to the recursion stack, where h is the height of the tree.
+
+1.
+class Node {
+    int data;
+    Node left, right;
+
+    Node(int data) {
+        this.data = data;
+        left = right = null;
+    }
+}
+
+public class InorderTraversal {
+
+    // inorder Traversal: Left -> Root -> Right
+    static void inorder(Node root) {
+        if (root == null)
+            return;
+
+        inorder(root.left);               // Left
+        System.out.print(root.data + " "); // Root
+        inorder(root.right);              // Right
+    }
+
+    public static void main(String[] args) {
+        Node root = new Node(1);
+        root.left = new Node(2);
+        root.right = new Node(3);
+        root.left.left = new Node(4);
+        root.left.right = new Node(5);
+
+        inorder(root);
+    }
+}
+
+
+2.
+class Solution {
+    ArrayList<Integer> arr = new ArrayList<>();
+    public List<Integer> inorderTraversal(TreeNode root) {
+        if( root == null ) {
+            return arr;
+        }
+       
+        inorderTraversal(root.left);
+        arr.add(root.val);
+        inorderTraversal(root.right);
+        return arr;
+        
+    }
+}
