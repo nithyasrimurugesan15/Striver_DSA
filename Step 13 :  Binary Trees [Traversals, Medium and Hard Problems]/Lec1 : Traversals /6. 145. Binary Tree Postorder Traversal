@@ -1,0 +1,53 @@
+1. Recursive Postorder Traversal
+2. Leetcode prob -> https://leetcode.com/problems/binary-tree-postorder-traversal/
+
+Time: O(n)
+Space: O(h) (recursion stack, h = height of tree)
+
+class Node {
+    int data;
+    Node left, right;
+
+    Node(int data) {
+        this.data = data;
+        left = right = null;
+    }
+}
+
+public class postorderTraversal {
+
+    // Postorder Traversal:  Left -> Right -> Root
+    static void postorder(Node root) {
+        if (root == null)
+            return;
+
+        postorder(root.left);               // Left
+        postorder(root.right);              // Right
+        System.out.print(root.data + " ");  // Root
+    }
+
+    public static void main(String[] args) {
+        Node root = new Node(1);
+        root.left = new Node(2);
+        root.right = new Node(3);
+        root.left.left = new Node(4);
+        root.left.right = new Node(5);
+
+        postorder(root);
+    }
+}
+
+2.Leetcode prob :
+
+class Solution {
+    ArrayList<Integer> arr = new ArrayList<>();
+    public List<Integer> postorderTraversal(TreeNode root) {
+          if ( root == null ) {
+            return arr;
+        }
+        postorderTraversal ( root.left ) ; 
+        postorderTraversal ( root.right ); 
+        arr.add ( root.val ) ;
+        return arr;
+        
+    }
