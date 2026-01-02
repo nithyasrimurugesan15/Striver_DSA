@@ -1,0 +1,66 @@
+Time Complexity: O(n), where n is the number of nodes in the binary tree. Each node is visited exactly once.
+Space Complexity: O(h), where h is the height of the binary tree. This is the space required for the stack to store the nodes during traversal.
+
+import java.util.*;
+
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode(int val) {
+        this.val = val;
+        left = right = null;
+    }
+}
+
+class Solution {
+
+    // Iterative Inorder Traversal
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        Stack<TreeNode> st = new Stack<>();
+        TreeNode curr = root;
+
+        while (curr != null || !st.isEmpty()) {
+
+            // Go to the leftmost node
+            while (curr != null) {
+                st.push(curr);
+                curr = curr.left;
+            }
+
+            // Process node
+            curr = st.pop();
+            res.add(curr.val);
+
+            // Move to right subtree
+            curr = curr.right;
+        }
+        return res;
+    }
+}
+
+// Driver class
+public class Main {
+    public static void main(String[] args) {
+
+        // Tree creation
+        /*
+                1
+               / \
+              2   3
+                 /
+                5
+        */
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.right.left = new TreeNode(5);
+
+        Solution sol = new Solution();
+        List<Integer> result = sol.inorderTraversal(root);
+
+        System.out.println("Inorder Traversal (Iterative): " + result);
+    }
+}
