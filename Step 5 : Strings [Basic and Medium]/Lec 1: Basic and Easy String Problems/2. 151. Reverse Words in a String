@@ -78,4 +78,47 @@ class Solution {
 }
 
 
-Appracoh optimal  : two pointer
+Appracoh optimal  : two pointer : prefer
+
+
+class Solution {
+    public String reverseWords(String s) {
+        int i = s.length() - 1;
+        StringBuilder res = new StringBuilder();
+        while (i >= 0) {
+            // skip spaces
+            while (i >= 0 && s.charAt(i) == ' ') i--;
+
+            if (i < 0) break;
+
+            int j = i;
+            // find word start
+            while (j >= 0 && s.charAt(j) != ' ') j--;
+
+            res.append(s.substring(j + 1, i + 1)).append(" ");
+            i = j - 1;
+        }
+
+        return res.toString().trim();
+    }
+}
+
+
+
+another approach :
+
+class Solution {
+    public String reverseWords(String s) {
+        String[] words = s.split("\\s+");
+        StringBuilder res = new StringBuilder();
+
+        for (int i = words.length - 1; i >= 0; i--) {
+            res.append(words[i]);
+            if (i != 0) {
+                res.append(" ");
+            }
+        }
+
+        return res.toString().trim();
+    }
+}
