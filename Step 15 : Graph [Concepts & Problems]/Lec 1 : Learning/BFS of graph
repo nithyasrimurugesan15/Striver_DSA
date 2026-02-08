@@ -1,0 +1,29 @@
+Time Complexity: O(V + E)
+Space Complexity: O(V)
+
+
+“Each node is enqueued and dequeued exactly once, and each edge is processed once, so BFS runs in linear time with respect to vertices and edges.”
+
+class Solution {
+    public ArrayList<Integer> bfs(ArrayList<ArrayList<Integer>> adj) {
+        ArrayList<Integer> res = new ArrayList<>();
+        int v = adj.size();
+        boolean[] visited = new boolean[v];
+        Queue<Integer> q = new LinkedList<>();
+        q.add(0);
+        visited[0]=true;
+        while(!q.isEmpty()) {
+            int node =  q.poll();
+            res.add(node);
+            
+            for(int ele : adj.get(node)) {
+                if(!visited[ele]) {
+                    q.add(ele);
+                    visited[ele]=true;
+                }
+            }
+        }
+        return res;
+        
+    }
+}
