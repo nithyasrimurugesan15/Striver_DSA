@@ -1,0 +1,39 @@
+https://leetcode.com/problems/maximum-product-subarray/
+
+
+Brute :
+
+class Solution {
+    public int maxProduct(int[] nums) {
+      
+        int mxp=0;
+        int max=0;
+        int l=0;
+        if(nums.length==1) {
+            return nums[0];
+        }
+        for(int i=0;i<nums.length;i++) {
+            if(nums[i]>max) {
+                max=nums[i];
+            }
+        }
+        for(int i=0;i<nums.length;i++) {
+               int p=nums[i];
+          for(int j=i+1;j<nums.length;j++)
+          {
+            p*=nums[j];
+             if(p>mxp) {
+                mxp=p;
+            }
+        }
+    }
+        if(mxp>max) {
+            return mxp;
+        }
+        else{
+            return max;
+
+        }
+    }
+}
+
