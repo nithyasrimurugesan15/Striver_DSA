@@ -1,0 +1,36 @@
+
+
+
+class Solution 
+{
+    public int maxArea(int[] height) 
+    {
+        int s=0;
+        int e=height.length-1;
+        int max=Integer.MIN_VALUE;
+        int prod=0;
+        while(s<e)
+        {
+         // int w=Math.min(height[s],height[e]);
+         
+          if(height[s]<=height[e])
+          {
+            prod=(e-s)*height[s];
+            s=s+1;
+          } 
+          else
+          {
+            prod=(e-s)*height[e];
+            e=e-1;
+          }
+       
+        // max=Math.max(max,prod);
+           if(prod>max)
+          {
+            max=prod;
+          }
+
+        }
+        return max;
+    }
+}
