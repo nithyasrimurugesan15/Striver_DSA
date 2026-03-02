@@ -1,0 +1,27 @@
+https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/
+
+
+t.c : o(n)
+s.c : o(1)
+
+class Solution {
+    public int[] twoSum(int[] arr, int t) {
+        int l=0;
+        int r=arr.length-1;
+        while(l<r) {
+            int sum=arr[l]+arr[r];
+            if(sum==t) {
+                return new int[]{l+1,r+1};
+            }
+            else if(sum<t) {
+                l++;
+            }
+            else {
+                r--;
+            }
+
+        }
+        return new int[]{-1,-1};
+        
+    }
+}
