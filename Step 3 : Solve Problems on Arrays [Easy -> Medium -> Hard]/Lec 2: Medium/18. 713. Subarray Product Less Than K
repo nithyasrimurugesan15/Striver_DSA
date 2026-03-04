@@ -1,0 +1,25 @@
+sliding window 
+
+class Solution {
+    public int numSubarrayProductLessThanK(int[] nums, int k) {
+        if(k<=1) {
+            return 0;
+        }
+        int s=0;
+        int e=0;
+        int cnt=0;
+        int pd=1;
+        while(e<nums.length) {
+            pd*=nums[e];
+            while(pd>=k) {
+                pd=pd/nums[s];
+                s++;
+            }
+            cnt+=(e-s)+1;
+            e++;
+
+        }
+        return cnt;
+        
+    }
+}
