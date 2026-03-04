@@ -1,0 +1,28 @@
+SLIDING WINDOW
+
+class Solution {
+    public int longestOnes(int[] nums, int k) {
+        int s=0;
+        int e=0;
+        int l=0,maxones=0,cnt=0;
+        while(e<nums.length) {
+            if(nums[e]==0) {
+                cnt++;
+            }
+            if(cnt>k) {
+                if(nums[s]==0) {
+                    cnt--;
+
+                }
+                s++;
+
+            }
+            l=(e-s)+1;
+            maxones=Math.max(maxones,l);
+            e++;
+        }
+        return maxones;
+        
+    }
+}
+
