@@ -1,0 +1,21 @@
+https://www.geeksforgeeks.org/problems/max-sum-subarray-of-size-k5313/1
+
+class Solution {
+    public int maxSubarraySum(int[] arr, int k) {
+        int sum=0;
+        int msum=0;
+        int l=arr.length;
+        for(int i=0;i<k;i++) {
+            sum+=arr[i];
+        }
+        msum=sum;
+        for(int i=1;i<=l-k;i++) {
+            sum=sum-arr[i-1]+arr[i+k-1];
+            if(sum>msum){
+                msum=sum;
+            }
+        }
+        return msum;
+        
+    }
+}
