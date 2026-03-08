@@ -1,0 +1,38 @@
+https://www.geeksforgeeks.org/problems/first-negative-integer-in-every-window-of-size-k3345/1
+
+Use  DEQUE for finding first min,max,-ve,...
+
+class Solution {
+    static List<Integer> firstNegInt(int arr[], int k) {
+        // write code here
+        ArrayList<Integer> res= new ArrayList<>();
+        Deque<Integer> q = new ArrayDeque<>();
+        
+        int i=0,j=0;
+        while(j<arr.length) {
+            if(arr[j]<0) {
+                q.add(j);
+            }
+            if(j-i+1<k) {
+                j++;
+            }
+            else if(j-i+1==k) {
+                if(!q.isEmpty())
+                {
+                    res.add(arr[q.peek()]);
+                }
+                else{
+                    res.add(0);
+                }
+                if(!q.isEmpty() && q.peek()==i){
+                    q.poll();
+                }
+                i++;
+                j++;
+            }
+            
+        }
+        return res;
+    }
+}
+
