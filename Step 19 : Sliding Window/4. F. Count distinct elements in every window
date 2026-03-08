@@ -1,0 +1,28 @@
+https://www.geeksforgeeks.org/problems/count-distinct-elements-in-every-window/1
+
+class Solution {
+    ArrayList<Integer> countDistinct(int arr[], int k) {
+        // code here
+        ArrayList<Integer> res = new ArrayList<>();
+        HashMap<Integer,Integer> h = new HashMap<>();
+        int i=0;
+        int j=0;
+        while(j<arr.length) {
+            h.put(arr[j],h.getOrDefault(arr[j],0)+1);
+            if(j-i+1<k) {
+                j++;
+            }
+            else if(j-i+1 ==  k) {
+                res.add(h.size());
+                h.put(arr[i],h.get(arr[i])-1);
+                if(h.get(arr[i])==0) {
+                    h.remove(arr[i]);
+                }
+                i++;
+                j++;
+            }
+        }
+        return res;
+            
+    }
+}
