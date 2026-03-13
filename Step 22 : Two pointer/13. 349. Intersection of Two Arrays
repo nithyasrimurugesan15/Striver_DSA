@@ -1,0 +1,64 @@
+https://leetcode.com/problems/intersection-of-two-arrays/description/
+
+class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+        ArrayList<Integer> res = new ArrayList<>();
+        int s=0;
+        int e=0;
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        while(s<nums1.length && e<nums2.length) {
+            if(nums1[s]==nums2[e] ) {
+                if(res.isEmpty() || res.get(res.size()-1)!=nums1[s]) 
+                {
+                    res.add(nums1[s]);
+
+                    }
+                s++;
+                e++;
+            }
+            else if(nums1[s] < nums2[e]){
+                s++;
+            }
+            else{
+                e++;
+            }
+        }
+
+        int[] ans = new int[res.size()];
+        for(int i=0;i<res.size();i++) {
+            ans[i]=res.get(i);
+        }
+        return ans;
+        
+    }
+}
+
+Another approach
+
+class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+
+        HashSet<Integer> r1 = new HashSet<>();
+        HashSet<Integer> r2 = new HashSet<>();
+       
+        for(int i : nums1){
+            r1.add(i);
+        }
+
+        for(int i:nums2){
+            if(r1.contains(i)){
+                r2.add(i);
+            }
+        }
+        int[] ans = new int[r2.size()];
+        
+       int k=0;
+       for(int i : r2){
+        ans[k++]=i;
+       }
+        return ans;
+
+        
+    }
+}
