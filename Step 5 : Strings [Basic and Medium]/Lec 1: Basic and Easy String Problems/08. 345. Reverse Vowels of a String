@@ -1,5 +1,7 @@
 https://leetcode.com/problems/reverse-vowels-of-a-string/description/?envType=problem-list-v2&envId=string
 
+o(n) and o(n) 
+
 class Solution {
     public String reverseVowels(String s) {
         char[] a = s.toCharArray();
@@ -22,4 +24,7 @@ class Solution {
     }
 }
 
-optimal : two pointer
+optimal : two pointer 
+
+o(n) and o(1)
+
