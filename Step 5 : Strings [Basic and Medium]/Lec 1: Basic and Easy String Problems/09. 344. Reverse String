@@ -1,0 +1,41 @@
+https://leetcode.com/problems/reverse-string/description/
+
+class Solution
+{
+    public void reverseString(char[] s) 
+    {
+        int left=0;
+        int right=s.length-1;
+        while(left<right)
+        {
+            char temp=s[left];
+            s[left]=s[right];
+            s[right]=temp;
+            left++;
+            right--;
+        }
+    }
+}
+ 
+gfg: https://www.geeksforgeeks.org/problems/reverse-a-string/1
+
+class Solution {
+    public static String reverseString(String st) {
+        // code here
+        int l=0;
+        int r=st.length()-1;
+        
+        // for(int i=s.length()-1;i>=0;i--){
+        //     res+=s.charAt(i);
+        // }
+        char[] s =st.toCharArray();
+        while(l<r){
+          char temp = s[l];
+          s[l] = s[r];
+          s[r]=temp;
+          l++;
+          r--;
+        }
+        return new String(s);
+    }
+}
