@@ -1,0 +1,25 @@
+https://leetcode.com/problems/reverse-vowels-of-a-string/description/?envType=problem-list-v2&envId=string
+
+class Solution {
+    public String reverseVowels(String s) {
+        char[] a = s.toCharArray();
+        String v="aeiouAEIOU";
+        String res="";
+        for(int i=0;i<a.length;i++) {
+            if(v.indexOf(a[i]) != -1){
+                res+=a[i];
+            }
+        }
+        int j=res.length()-1;
+          for(int i=0;i<a.length;i++) {
+            if(v.indexOf(a[i]) != -1){
+                a[i]=res.charAt(j);
+                j--;
+            }
+        }
+        return new String(a);
+        
+    }
+}
+
+optimal : two pointer
