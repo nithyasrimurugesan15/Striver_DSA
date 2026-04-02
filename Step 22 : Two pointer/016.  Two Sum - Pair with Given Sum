@@ -1,0 +1,56 @@
+https://www.geeksforgeeks.org/problems/key-pair5616/1
+
+O(n × log(n)) time and O(1) space
+
+Approach 1 :
+
+class Solution {
+    boolean twoSum(int arr[], int target) {
+        
+        if(arr.length==1) {
+            return false;
+        }
+        
+        Arrays.sort(arr);
+        
+        int i=0;
+        int j=arr.length-1;
+        while(i<j) {
+            int sum=arr[i]+arr[j];
+            if(sum==target) {
+                return true;
+            }
+            else if(sum<target) {
+                i++;
+            }
+            else{
+                j--;
+            }
+        }
+        return false;
+        
+    }
+}
+
+ 
+Approach 2 : Better (prefer this)
+
+o(n) and o(1)
+
+  HashSet<Integer> s = new HashSet<>();
+        
+        for(int i=0;i<arr.length;i++) {
+            
+            int diff = target - arr[i];
+            
+            if(s.contains(diff)) {
+                
+                return true;
+            }
+            
+            s.add(arr[i]);
+        }
+        return false;
+        
+    }
+}
