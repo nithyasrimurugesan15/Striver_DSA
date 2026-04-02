@@ -1,5 +1,8 @@
 https://leetcode.com/problems/remove-duplicates-from-sorted-array/
+https://www.geeksforgeeks.org/problems/remove-duplicate-elements-from-sorted-array/1
 
+T.C : O(N)
+S.C : O(1)
 
 class Solution {
     public int removeDuplicates(int[] nums) {
