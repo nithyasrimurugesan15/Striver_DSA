@@ -1,5 +1,10 @@
 https://leetcode.com/problems/middle-of-the-linked-list/description/
 
+Problem Statement:
+Given the head of a singly linked list, return the middle node of the linked list.
+If there are two middle nodes, return the second middle node.
+
+
 Approach 1: optimal : [TortoiseHare Method]
 
 t.c : o(n/2) = o(n)
