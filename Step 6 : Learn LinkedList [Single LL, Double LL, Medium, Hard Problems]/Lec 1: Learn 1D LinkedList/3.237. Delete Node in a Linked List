@@ -1,31 +1,26 @@
-# 🧩 Delete Node in a Linked List
+# Delete Node in a Linked List
 
-🔗 Problem Link: Delete Node in a Linked List
+Problem Link:
+https://leetcode.com/problems/delete-node-in-a-linked-list/description/
 
----
+--------------------------------------------------
 
-## 📌 Problem Statement
+Problem Statement:
+Write a function to delete a node (except the last node) in a singly linked list, given only access to that node.
 
-Write a function to **delete a node (except the tail)** in a singly linked list, given only access to that node.
+--------------------------------------------------
 
-⚠️ You are **NOT given the head** of the list.
+Approach:
+Since we don't have access to the previous node, we cannot delete it normally.
 
----
+So we:
+1. Copy the value of next node to current node
+2. Skip the next node
 
-## 💡 Approach
+--------------------------------------------------
 
-Since we **don’t have access to the previous node**, we cannot delete the node in the usual way.
+Code:
 
-👉 Trick:
-
-* Copy the value of the **next node** into the current node
-* Skip the next node
-
----
-
-## 🚀 Solution (Java)
-
-```java
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -40,61 +35,31 @@ class Solution {
         node.next = node.next.next;
     }
 }
-```
 
----
+--------------------------------------------------
 
-## ⏱️ Complexity Analysis
+Time Complexity: O(1)
+Space Complexity: O(1)
 
-| Type             | Complexity |
-| ---------------- | ---------- |
-| Time Complexity  | O(1)       |
-| Space Complexity | O(1)       |
+--------------------------------------------------
 
----
+Example:
 
-## 🔍 Example
-
-### Input:
-
-```
-Linked List: 4 → 5 → 1 → 9  
+Input:
+4 -> 5 -> 1 -> 9
 Node to delete: 5
-```
 
-### Output:
+Output:
+4 -> 1 -> 9
 
-```
-4 → 1 → 9
-```
+--------------------------------------------------
 
----
+Important Notes:
+- Cannot delete the last node using this method
+- Node.next must not be null
+- We are not actually deleting, we are overwriting
 
-## ⚠️ Important Notes
+--------------------------------------------------
 
-* This method **cannot delete the last node**
-* Works only when `node.next != null`
-* It **overwrites** the current node instead of actual deletion
-
----
-
-## 🧠 Key Insight
-
-Instead of deleting the node,
-👉 we **convert it into the next node** and bypass the next node.
-
----
-
-## 📚 Related Topics
-
-* Linked List
-* In-place Operations
-* Pointer Manipulation
-
----
-
-## ⭐ If you found this helpful
-
-Give a ⭐ on your repo and keep practicing DSA!
-
----
+Key Idea:
+Convert current node into next node and bypass next node
