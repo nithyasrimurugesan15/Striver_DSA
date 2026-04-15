@@ -1,0 +1,26 @@
+https://www.geeksforgeeks.org/problems/key-pair5616/1
+
+t.c and s.c: o(n) and o(n)
+
+prefer : below code
+
+class Solution {
+    static boolean pairInSortedRotated(int arr[], int target) {
+        // Your code here
+     HashSet<Integer> s = new HashSet<>();
+        
+        for(int i=0;i<arr.length;i++) {
+            
+            int diff = target - arr[i];
+            
+            if(s.contains(diff)) {
+                
+                return true;
+            }
+            
+            s.add(arr[i]);
+        }
+        return false;
+        
+    }
+}
