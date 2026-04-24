@@ -1,0 +1,29 @@
+https://leetcode.com/problems/maximum-sum-of-distinct-subarrays-with-length-k/description/
+
+class Solution {
+    public long maximumSubarraySum(int[] nums, int k) {
+        int j=0;
+        int i=0;
+        long msum=Long.MIN_VALUE;
+        long sum=0;
+        HashSet<Integer> hs = new HashSet<>();
+        while(j<nums.length) {
+            while(( j-i+1) > k || hs.contains(nums[j])) {
+                sum-=nums[i];
+                hs.remove(nums[i]);
+                i++;
+            }
+            hs.add(nums[j]);
+            sum+=nums[j];
+            if(j-i+1 == k) {
+                msum = Math.max(msum , sum);
+                // sum-=nums[i];
+                // i++;
+            }
+            j++;
+
+        }
+        return msum==Long.MIN_VALUE ? 0 : msum;
+        
+    }
+}
