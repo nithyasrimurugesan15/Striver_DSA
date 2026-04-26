@@ -1,12 +1,10 @@
 https://www.geeksforgeeks.org/problems/subarrays-with-k-different-integers/1
-
-// User function Template for Java
+https://leetcode.com/problems/subarrays-with-k-different-integers/description/
 
 class Solution {
    static int exactlyK(int arr[], int k) {
        
        int res = atMost(arr,k) - atMost(arr, k-1);
-       
        
        return res;
     }
@@ -28,9 +26,7 @@ class Solution {
                 }
                 i++;
               
-                
             }
-       
                 cnt+=(j-i+1);
           
             j++;
