@@ -1,0 +1,23 @@
+https://www.geeksforgeeks.org/problems/smallest-subarray-with-sum-greater-than-x5651/1
+
+class Solution {
+    public static int smallestSubWithSum(int x, int[] nums) {
+        // Your code goes here
+        
+        int i=0;
+        int j=0;
+        int sum=0;
+        int minlen=Integer.MAX_VALUE;;
+        while(j<nums.length){
+            sum+=nums[j];
+            while(sum>=x) {
+                 minlen=Math.min(minlen,j-i+1);
+                sum-=nums[i];
+                i++;
+            }
+            j++;
+           }
+          
+        return minlen==Integer.MAX_VALUE ? 0 : minlen;
+    }
+}
