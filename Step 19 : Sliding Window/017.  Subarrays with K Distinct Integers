@@ -1,0 +1,40 @@
+https://www.geeksforgeeks.org/problems/subarrays-with-k-different-integers/1
+
+// User function Template for Java
+
+class Solution {
+   static int exactlyK(int arr[], int k) {
+       
+       int res = atMost(arr,k) - atMost(arr, k-1);
+       
+       
+       return res;
+    }
+    static int atMost(int arr[], int k) {
+        // code here
+        int cnt=0;
+        int i=0;
+        int j=0;
+        HashMap<Integer,Integer> hm = new HashMap<>();
+        
+        while(j<arr.length) {
+            hm.put(arr[j],hm.getOrDefault(arr[j],0)+1);
+            
+        while(  hm.size() > k) {
+                // cnt+=(j-i+1);
+                hm.put(arr[i],hm.get(arr[i])-1);
+                if(hm.get(arr[i])==0) {
+                    hm.remove(arr[i]);
+                }
+                i++;
+              
+                
+            }
+       
+                cnt+=(j-i+1);
+          
+            j++;
+        }
+        return cnt;
+    }
+}
