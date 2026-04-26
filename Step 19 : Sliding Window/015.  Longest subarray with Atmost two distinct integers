@@ -1,0 +1,25 @@
+https://www.geeksforgeeks.org/problems/fruit-into-baskets-1663137462/1
+
+class Solution {
+    public int totalElements(int[] arr) {
+        // code here
+        HashMap<Integer,Integer> hm = new HashMap<>();
+        int j=0;
+        int i=0;
+        int mlen=0;
+        while(j<arr.length) {
+            hm.put(arr[j],hm.getOrDefault(arr[j],0)+1);
+            while(hm.size() > 2) {
+                hm.put(arr[i],hm.get(arr[i])-1);
+                if(hm.get(arr[i])==0) {
+                    hm.remove(arr[i]);
+                }
+                i++;
+            }
+            mlen=Math.max(mlen,j-i+1);
+            j++;
+            
+        }
+        return mlen;
+    }
+}
