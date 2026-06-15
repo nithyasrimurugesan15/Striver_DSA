@@ -1,3 +1,5 @@
+https://www.geeksforgeeks.org/problems/leaders-in-an-array-1587115620/1
+
 import java.util.*;
 class Solution {
     static ArrayList<Integer> leaders(int arr[]) {
