@@ -1,8 +1,33 @@
 https://leetcode.com/problems/reverse-words-in-a-string/
 
-prefer : optimal -> tw pointers approach -> later see -> o(n) and o(1)
+prefer : optimal -> tw pointers approach ->  o(n) and o(1)
 
 use stringbuilder instead of string -> bcoz it runs faster
+
+prefer: optimal -> tw pointers approach 
+
+class Solution {
+    public String reverseWords(String s) {
+        int i=s.length()-1;
+        StringBuilder res = new StringBuilder();
+
+        while(i>=0) {
+            while(i>=0 && s.charAt(i)==' ') {
+                i--;
+
+            }
+            int j=i;
+            while(j>=0 && s.charAt(j)!=' '){
+                j--;
+            }
+            res.append(s.substring(j+1,i+1)).append(" ");
+            i=j-1;
+        }
+        return res.toString().trim();
+    }
+}
+
+
 
 approach : use stringbuilder -> o(n) and o(n)
 
