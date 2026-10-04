@@ -1,0 +1,29 @@
+https://www.geeksforgeeks.org/problems/reverse-array-in-groups0255/1
+
+class Solution {
+    public void rev(int[] arr, int l, int r) {
+        while(l<=r) {
+                   int temp = arr[l];
+                   arr[l]=arr[r];
+                   arr[r]=temp;
+                   l++;
+                   r--;
+               }
+    }
+    public void reverseInGroups(int[] arr, int k) {
+        // code here
+        int i=0;
+        if(arr.length<k) {
+            rev(arr,0,arr.length-1);
+        }
+        else {
+            for(i=0;i<arr.length-k;i+=k) {
+                 rev(arr,i,i+k-1);
+            }
+            
+            rev(arr,i,arr.length-1);
+      
+        }
+        
+    }
+}
