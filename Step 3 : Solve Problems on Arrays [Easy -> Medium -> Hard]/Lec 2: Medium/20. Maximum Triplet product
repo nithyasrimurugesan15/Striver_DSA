@@ -1,0 +1,16 @@
+https://www.geeksforgeeks.org/problems/maximum-triplet-product--170647/1
+
+class Solution {
+    public int maxTripletProduct(int[] arr) {
+        // code here
+        
+        Arrays.sort(arr);
+        
+        int len = arr.length;
+        int res = Math.max( (arr[0]*arr[1]*arr[len-1]), 
+        (arr[len-1]*arr[len-2]*arr[len-3]) );
+        
+        return res;
+    }
+    
+};
