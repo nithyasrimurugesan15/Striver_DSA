@@ -1,0 +1,14 @@
+https://www.geeksforgeeks.org/problems/stock-buy-and-sell2615/1
+
+class Solution {
+    public int maxProfit(int[] p) {
+        // code here
+        int res=0;
+        for(int i=1;i<p.length;i++) {
+            if(p[i]>p[i-1]) {
+                res+=(p[i]-p[i-1]);
+            }
+        }
+        return res;
+    }
+}
