@@ -1,0 +1,24 @@
+https://www.geeksforgeeks.org/problems/maximum-product-subarray3604/1
+
+class Solution {
+    int maxProduct(int[] arr) {
+    
+        int minend = arr[0];
+        int maxend = arr[0];
+        int maxp = arr[0];
+        
+        for(int i=1;i<arr.length;i++) {
+            if(arr[i]<0) {
+                int temp = maxend;
+                maxend = minend;
+                minend = temp;
+            }
+            
+            maxend = Math.max(arr[i], maxend*arr[i]);
+            minend = Math.min(arr[i], minend*arr[i]);
+            
+            maxp = Math.max(maxp,maxend);
+        }
+        return maxp;
+    }
+}
