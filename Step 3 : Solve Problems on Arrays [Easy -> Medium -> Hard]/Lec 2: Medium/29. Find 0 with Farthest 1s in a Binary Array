@@ -1,0 +1,43 @@
+https://www.geeksforgeeks.org/dsa/find-a-seat-with-distance-between-nearest-occupied-seats-maximised/
+
+public class Main {
+    public static int maxDistToClosest(String seats)
+    {
+        int res = -1;
+
+        int emptyCnt = 0;
+        for (int i = 0; i < seats.length(); ++i) {
+            if (seats.charAt(i) == '0') {
+           
+                emptyCnt++;
+            }
+            else if (seats.charAt(i) == '1'
+                     && res == -1) {
+              
+                res = emptyCnt;
+                
+                emptyCnt = 0;
+            }
+            else {
+                res = Math.max(
+                    res,
+                    (int)Math.ceil(emptyCnt
+                                   / 2.0));
+
+                emptyCnt = 0;
+            }
+        }
+
+        res
+            = Math.max(res, emptyCnt);
+
+        return res;
+    }
+
+    public static void main(String[] args)
+    {
+        String seats = "1000101";
+
+        System.out.println(maxDistToClosest(seats));
+    }
+}
