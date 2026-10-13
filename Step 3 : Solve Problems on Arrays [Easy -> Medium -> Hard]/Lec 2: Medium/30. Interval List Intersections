@@ -1,0 +1,40 @@
+https://www.geeksforgeeks.org/problems/interval-list-intersections/1
+
+class Solution {
+    public List<List<Integer>> findIntersection(List<List<Integer>> arr1,
+        List<List<Integer>> arr2) {
+            
+            List<List<Integer>> res = new ArrayList<>();
+            int i = 0;
+            int j = 0;
+            while (i < arr1.size() && j < arr2.size()) {
+                
+                    int f1 = arr1.get(i).get(0);
+                    int f2 = arr1.get(i).get(1);
+                    
+                    int s1 = arr2.get(j).get(0);
+                    int s2 = arr2.get(j).get(1);
+                    
+                    int start = Math.max(f1, s1);
+                    int end = Math.min(f2, s2);
+                    
+                    if(start<=end) {
+                        List<Integer> sub = new ArrayList<>();
+                         sub.add(start);
+                         sub.add(end);
+                         res.add(sub);
+                    }
+                   
+                if(f2 < s2) {
+                    i++;
+                }
+                else {
+                    j++;
+                }
+            }
+            return res;
+                                                    
+    
+            
+        }
+}
