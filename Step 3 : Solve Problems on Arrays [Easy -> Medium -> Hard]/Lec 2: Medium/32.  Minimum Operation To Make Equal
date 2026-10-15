@@ -1,0 +1,17 @@
+https://www.geeksforgeeks.org/problems/minimum-operation-to-make-equal/1
+
+class Solution {
+    public int minOps(int[] arr) {
+        // code here
+        int min = arr[0];
+        
+        for(int i : arr) {
+            min = Math.min(min,i);
+        }
+        int op=0;
+        for(int i : arr) {
+            op += (i - min);
+        }
+        return op;
+    }
+}
