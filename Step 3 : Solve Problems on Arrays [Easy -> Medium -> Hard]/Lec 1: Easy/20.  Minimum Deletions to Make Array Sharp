@@ -1,0 +1,16 @@
+https://leetcode.com/contest/weekly-contest-524/problems/minimum-deletions-to-make-array-sharp/description/
+
+O(N) AND O(1)
+
+class Solution {
+    public int minDeletions(int[] nums) {
+        int cnt = 0;
+        for(int i = 0;i < nums.length - 1;i++) {
+            if(nums[i] == nums[i+1]) {
+                cnt++;
+            }
+        }
+
+        return cnt;
+    }
+}©leetcode
